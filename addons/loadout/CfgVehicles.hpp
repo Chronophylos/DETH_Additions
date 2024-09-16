@@ -23,7 +23,6 @@ class CfgVehicles {
 	class GVAR(createLoadout): DTA_Module {
 		scope = 2;							// Editor visibility; 2 will show it in the menu, 1 will hide it.
 		displayName = CSTRING(CreateLoadout_Module_DisplayName);
-		tooltip = CSTRING(CreateLoadout_Module_Tooltip);
 		//icon = "\TAG_addonName\data\icon_Nuke_ca.paa";	// Map icon. Delete this entry to use the default icon.
 
 		function = QFUNC(createLoadout);	// Name of function triggered once conditions are met
@@ -50,15 +49,24 @@ class CfgVehicles {
 		// Module description (must inherit from base class, otherwise pre-defined entities won't be available)
 		class ModuleDescription: ModuleDescription {
 			description = CSTRING(CreateLoadout_Module_ShortDescription);
-			sync[] = { "LocationArea_F" };
+			sync[] = { "CAManBase", QGVAR(applyLoadout) };
 
-			class LocationArea_F {
+			class CAManBase {
 				description[] = { };
 				position = 0;	// position is taken into effect
 				direction = 0;	// direction is taken into effect
 				optional = 0;	// synced entity is optional
-				duplicate = 1;	// multiple entities of this type can be synced
+				duplicate = 0;	// multiple entities of this type can be synced
 				synced[] = { "AnyAI" };	// pre-defined entities like "anybrain" can be used (see the table below)
+			};
+
+			class GVAR(applyLoadout) {
+				description[] = { };
+				position = 0;	// position is taken into effect
+				direction = 0;	// direction is taken into effect
+				optional = 0;	// synced entity is optional
+				duplicate = 0;	// multiple entities of this type can be synced
+				synced[] = { "Anything" };	// pre-defined entities like "anybrain" can be used (see the table below)
 			};
 		};
 	};
@@ -66,11 +74,10 @@ class CfgVehicles {
 	class GVAR(applyLoadout): DTA_Module {
 		scope = 2;							// Editor visibility; 2 will show it in the menu, 1 will hide it.
 		displayName = CSTRING(ApplyLoadout_Module_DisplayName);
-		tooltip = CSTRING(ApplyLoadout_Module_Tooltip);
 		//icon = "\TAG_addonName\data\icon_Nuke_ca.paa";	// Map icon. Delete this entry to use the default icon.
 
 		function = QFUNC(applyLoadout);	// Name of function triggered once conditions are met
-		functionPriority = 1;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
+		functionPriority = 10;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 1;						// 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0;				// 1 for module waiting until all synced triggers are activated
 		isDisposable = 1;					// 1 if modules is to be disabled once it is activated (i.e. repeated trigger activation will not work)
@@ -93,15 +100,24 @@ class CfgVehicles {
 		// Module description (must inherit from base class, otherwise pre-defined entities won't be available)
 		class ModuleDescription: ModuleDescription {
 			description = CSTRING(ApplyLoadout_Module_ShortDescription);
-			sync[] = { "LocationArea_F" };
+			sync[] = { "CAManBase", QGVAR(createLoadout) };
 
-			class LocationArea_F {
+			class CAManBase {
 				description[] = { };
 				position = 0;	// position is taken into effect
 				direction = 0;	// direction is taken into effect
 				optional = 0;	// synced entity is optional
 				duplicate = 1;	// multiple entities of this type can be synced
 				synced[] = { "AnyPlayer" };	// pre-defined entities like "anybrain" can be used (see the table below)
+			};
+
+			class GVAR(createLoadout) {
+				description[] = { };
+				position = 0;	// position is taken into effect
+				direction = 0;	// direction is taken into effect
+				optional = 0;	// synced entity is optional
+				duplicate = 0;	// multiple entities of this type can be synced
+				synced[] = { "Anything" };	// pre-defined entities like "anybrain" can be used (see the table below)
 			};
 		};
 	};

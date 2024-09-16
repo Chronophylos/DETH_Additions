@@ -3,7 +3,7 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = { QGVAR(moduleCreateLoadout) };
+        units[] = { QGVAR(createLoadout), QGVAR(applyLoadout) };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = { "A3_Modules_F" };

@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="DTA">
     <Package name="Loadout">
-        <Key ID="STR_DTA_Loadout_ApplyLoadout_Module_DisplayName">
-            <English>Apply Loadout</English>
-        </Key>
-        <Key ID="STR_DTA_Loadout_ApplyLoadout_Module_Tooltip">
-            <English>Apply a Loadout to your Players</English>
-        </Key>
-        <Key ID="STR_DTA_Loadout_ApplyLoadout_Module_ShortDescription">
-            <English>Load a Units Loadout and Apply it to synced Players at Mission Start.</English>
-        </Key>
+        <Container name="Apply Loadout">
+            <Key ID="STR_DTA_Loadout_ApplyLoadout_Module_DisplayName">
+                <English>Apply Loadout</English>
+            </Key>
+            <Key ID="STR_DTA_Loadout_ApplyLoadout_Module_ShortDescription">
+                <English>Apply a loaded Loadout to all synced Units</English>
+            </Key>
+        </Container>
+        <Container name="Create Loadout">
+            <Key ID="STR_DTA_Loadout_CreateLoadout_Module_DisplayName">
+                <English>Create Loadout</English>
+            </Key>
+            <Key ID="STR_DTA_Loadout_CreateLoadout_Module_ShortDescription">
+                <English>Loads a Loadout from a Unit and deletes it.</English>
+            </Key>
+        </Container>
     </Package>
 </Project>

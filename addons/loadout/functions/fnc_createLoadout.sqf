@@ -10,11 +10,20 @@ params [
 if (_activated) then {
 	// Attribute values are saved in module's object space under their class names
 
-	diag_log text format ["Synchronized Objects: %1", _units];
+	private _unitCount = count _units;
+	if (_unitCount > 1) then {
+		// TODO: Warn User
+	};
 
-	// find createLoadoutModule and players
+	private _preset = _units select 0;
+	TRACE_1("Found Preset Unit", _preset);
 
-	// apply loadout to players and set respawn handler
+	private _loadout = getUnitLoadout [_preset, true];
+	SETVAR(_logic, GVAR(loadout), _loadout);
+	TRACE_1("Stored Preset Loadout", _loadout);
+
+	deleteVehicle _preset;
+	TRACE_1("Removed Preset Unit", _preset);
 };
 // Module function is executed by spawn command, so returned value is not necessary, but it is good practice.
 true;
