@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup HEMTT
@@ -19,12 +19,12 @@ jobs:
       - name: Run HEMTT build
         run: hemtt release
       - name: Remove 'latest'
-        run: rm release/dta-latest.zip
+        run: rm releases/dta-latest.zip
       - name: Upload Release
         uses: actions/upload-artifact@v4
         with:
           name: dta-latest
-          path: release/dta-*.zip
+          path: releases/dta-*.zip
 
   release-github:
     name: Release on GitHub
