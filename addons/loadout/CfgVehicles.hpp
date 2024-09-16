@@ -14,22 +14,21 @@ class CfgVehicles
 			class Units;				// Selection of units on which the module is applied
 		};
 
-		// Description base classes (for more information see below):
 		class ModuleDescription
 		{
 			class AnyBrain;
 		};
 	};
 
-	class dta_Module_CreateLoadout : Module_F
+	class deth_additions_Module_CreateLoadout : Module_F
 	{
 		// Standard object definitions:
 		scope = 2;										// Editor visibility; 2 will show it in the menu, 1 will hide it.
 		displayName = "Create Module";				// Name displayed in the menu
 		//icon = "\TAG_addonName\data\icon_Nuke_ca.paa";	// Map icon. Delete this entry to use the default icon.
-		category = "dta_loadouts";
+		category = "deth_additions_loadouts";
 
-		function = "dta_fnc_moduleCreateLoadout";	// Name of function triggered once conditions are met
+		function = "deth_additions_fnc_moduleCreateLoadout";	// Name of function triggered once conditions are met
 		functionPriority = 1;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 1;						// 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 1;				// 1 for module waiting until all synced triggers are activated
@@ -46,14 +45,14 @@ class CfgVehicles
 			// Arguments shared by specific module type (have to be mentioned in order to be present):
 			class Units : Units
 			{
-				property = "dta_Module_CreateLoadout_Units";
+				property = "deth_additions_Module_CreateLoadout_Units";
 			};
 
 			class Name : Edit
 			{
 				displayName = "Name";
 				tooltip = "Name of the loadout";
-				property = "dta_Module_CreateLoadout_Name";
+				property = "deth_additions_Module_CreateLoadout_Name";
 				// Default text for the input box:
 				defaultValue = """"""; // Because this is an expression, one must have a string within a string to return a string
 			};

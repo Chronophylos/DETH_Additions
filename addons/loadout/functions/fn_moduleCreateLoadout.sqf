@@ -1,3 +1,21 @@
+/* ----------------------------------------------------------------------------
+	Function: deth_additions_fnc_moduleCreateLoadout
+	
+	Description: Create a Loadout from a unit.
+	
+	Parameters:
+	
+	Returns:
+	
+	Examples:
+	    (begin example)
+	
+	    (end)
+	
+	Author:
+	
+---------------------------------------------------------------------------- */
+
 params [
 	["_mode", "", [""]],
 	["_input", [], [[]]]
