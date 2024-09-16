@@ -35,15 +35,22 @@ jobs:
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v4
+        with:
+          name: dta-latest
+          path: release.zip
+      - name: HUH
+        run: ls -al
       - name: Create Release Version
         run: |
           VERSION=${GITHUB_REF_NAME#v}
           echo Version: $VERSION
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Unzip Artifact
+        run: unzip release.zip
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: release.zip
+          files: dta-*.zip
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,6 +67,8 @@ jobs:
         with:
           name: dta-latest
           path: release.zip
+      - name: HUH
+        run: ls -al
       - name: Unzip Artifact
         run: unzip release.zip
       - name: Release
