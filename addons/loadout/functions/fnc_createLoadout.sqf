@@ -16,14 +16,14 @@ if (_activated) then {
 	};
 
 	private _preset = _units select 0;
-	TRACE_1("Found Preset Unit", _preset);
+	TRACE_1("Found Preset Unit",_preset);
 
 	private _loadout = getUnitLoadout [_preset, true];
-	SETVAR(_logic, GVAR(loadout), _loadout);
-	TRACE_1("Stored Preset Loadout", _loadout);
+	SETVAR(_logic,GVAR(loadout),_loadout);
+	TRACE_1("Stored Preset Loadout",_loadout);
 
 	deleteVehicle _preset;
-	TRACE_1("Removed Preset Unit", _preset);
+	TRACE_1("Removed Preset Unit",_preset);
 };
 // Module function is executed by spawn command, so returned value is not necessary, but it is good practice.
 true;

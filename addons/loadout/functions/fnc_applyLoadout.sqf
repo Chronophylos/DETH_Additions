@@ -1,5 +1,3 @@
-#define DISABLE_COMPILE_CACHE
-
 #include "..\script_component.hpp"
 
 params [
@@ -16,27 +14,27 @@ if (_activated) then {
 	private _module = synchronizedObjects _logic select {
 		_x isKindOf QGVAR(createLoadout)
 	} select 0;
-	TRACE_1("Create Loadout Module", _module);
+	TRACE_1("Create Loadout Module",_module);
 
 	// Retrieve loadout from Module
-	private _loadout = GETVAR(_module, GVAR(loadout), []);
+	private _loadout = GETVAR(_module,GVAR(loadout),[]);
 	{
 		// set loadout
 		_x setUnitLoadout [_loadout, true];
-		TRACE_1("Applied Loadout", _x);
+		TRACE_1("Applied Loadout",_x);
 
 		// Store loadout on Unit and transmit over network
-		SETPVAR(_x, GVAR(loadout), _loadout);
+		SETPVAR(_x,GVAR(loadout),_loadout);
 
 		// Add Respawn Event Handler for loading loadout
 		_x addEventHandler ["Respawn", {
 			params ["_unit", "_corpse"];
 
 			// Attempt to get loadout from Unit and apply it
-			private _loadout = GETVAR(_unit, GVAR(loadout), []);
+			private _loadout = GETVAR(_unit,GVAR(loadout),[]);
 			if !(_loadout isEqualTo []) then {
 				_unit setUnitLoadout [_loadout, true];
-				TRACE_1("Applied Respawn Loadout", _unit);
+				TRACE_1("Applied Respawn Loadout",_unit);
 			};
 		}];
 	} forEach _units;
