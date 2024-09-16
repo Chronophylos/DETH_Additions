@@ -1,3 +1,3 @@
 
-PREP(createLoadout);
 PREP(applyLoadout);
+PREP(createLoadout);

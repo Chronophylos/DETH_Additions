@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="DTA">
+    <Package name="Main">
+        <Key ID="STR_DTA_Main_URL">
+            <English>https://github.com/Chronophylos/DETH_Additions</English>
+        </Key>
+    </Package>
+</Project>

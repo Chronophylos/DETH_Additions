@@ -1,54 +1,20 @@
+#include "..\script_component.hpp"
+
 params [
-	["_mode", "", [""]],
-	["_input", [], [[]]]
+	["_logic", objNull, [objNull]], // Argument 0 is module logic
+	["_units", [], [[]]], // Argument 1 is a list of affected units (affected by value selected in the 'class Units' argument))
+	["_activated", true, [true]]// true when the module was activated, false when it is deactivated (i.e., synced triggers are no longer active)
 ];
 
-switch _mode do
-{
-	// default object init
-	case "init":
-	{
-		_input params [
-			["_logic", objNull, [objNull]], // Module logic
-			["_isActivated", true, [true]], // true when the module was activated, false when it is deactivated
-			["_isCuratorPlaced", false, [true]]// true if the module was placed by Zeus
-		];
-		// ... code here...
-	};
-	// When some attributes were changed (including position and rotation)
-	case "attributesChanged3DEN": {
-		_input params [
-			["_logic", objNull, [objNull]]
-		];
-		// ... code here...
-	};
-	// When added to the world (e.g., after undoing and redoing creation)
-	case "registeredToWorld3DEN": {
-		_input params [
-			["_logic", objNull, [objNull]]
-		];
-		// ... code here...
-	};
-	// When removed from the world (i.e., by deletion or undoing creation)
-	case "unregisteredFromWorld3DEN": {
-		_input params [
-			["_logic", objNull, [objNull]]
-		];
-		// ... code here...
-	};
-	// When connection to object changes (i.e., new one is added or existing one removed)
-	case "connectionChanged3DEN": {
-		_input params [
-			["_logic", objNull, [objNull]]
-		];
-		// ... code here...
-	};
-	// When object is being dragged
-	case "dragged3DEN": {
-		_input params [
-			["_logic", objNull, [objNull]]
-		];
-		// ...code here...
-	};
+// Module specific behavior. Function can extract arguments from logic and use them.
+if (_activated) then {
+	// Attribute values are saved in module's object space under their class names
+
+	diag_log text format ["Synchronized Objects: %1", _units];
+
+	// find createLoadoutModule and players
+
+	// apply loadout to players and set respawn handler
 };
+// Module function is executed by spawn command, so returned value is not necessary, but it is good practice.
 true;
