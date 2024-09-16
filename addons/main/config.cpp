@@ -8,6 +8,8 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"cba_main"};
         author = "Chronophylos";
+        authors[] = { "Chronophylos" };
+        url = CSTRING(URL);
         VERSION_CONFIG;
     };
 };
@@ -16,5 +18,11 @@ class CfgMods {
     class PREFIX {
         dir = "@deth_additions";
         name = "DETH Additions";
+        picture = "A3\Ui_f\data\Logos\arma3_expansion_alpha_ca";
+        hidePicture = "true";
+        hideName = "true";
     };
 };
+
+#include "CfgSettings.hpp"
+#include "CfgModuleCategories.hpp"

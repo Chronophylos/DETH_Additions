@@ -8,17 +8,12 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = { "A3_Modules_F" };
         author = "Chronophylos";
+        authors[] = { "Chronophylos" };
+        url = ECSTRING(main,URL);
         VERSION_CONFIG;
     };
 };
 
-class CfgFactionClasses
-{
-    class NO_CATEGORY;
-    class deth_additions_loadout: NO_CATEGORY
-    {
-        displayName = "DETH Additions - Loadout";
-    };
-};
 
+#include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

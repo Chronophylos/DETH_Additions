@@ -1,6 +1,6 @@
 #define COMPONENT main
 #define COMPONENT_BEAUTIFIED Main
-#include "\z\deth_additions\addons\main\script_mod.hpp"
+#include "\z\dta\addons\main\script_mod.hpp"
 
 #ifdef DEBUG_ENABLED_MAIN
 	#define DEBUG_MODE_FULL
@@ -10,4 +10,4 @@
 	#define DEBUG_SETTINGS DEBUG_SETTINGS_MAIN
 #endif
 
-#include "\z\deth_additions\addons\main\script_macros.hpp"
+#include "\z\dta\addons\main\script_macros.hpp"

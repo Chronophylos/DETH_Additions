@@ -1,2 +1,3 @@
 
-PREP(moduleCreateLoadout);
+PREP(createLoadout);
+PREP(applyLoadout);

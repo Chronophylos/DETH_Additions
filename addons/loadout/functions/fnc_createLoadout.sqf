@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-	Function: deth_additions_fnc_moduleCreateLoadout
+	Function: DTA_fnc_createLoadout
 	
 	Description: Create a Loadout from a unit.
 	
