@@ -2,6 +2,10 @@
 #define COMPONENT_BEAUTIFIED Main
 #include "\z\dta\addons\main\script_mod.hpp"
 
+// #define DEBUG_MODE_FULL
+// #define DISABLE_COMPILE_CACHE
+// #define CBA_DEBUG_SYNCHRONOUS
+
 #ifdef DEBUG_ENABLED_MAIN
 	#define DEBUG_MODE_FULL
 #endif
