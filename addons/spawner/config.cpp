@@ -3,11 +3,11 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {QGVAR(waveSpawner)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"dta_main"};
-        author = "Chronopylos";
+        requiredAddons[] = {"dta_main", "A3_Modules_F"};
+        author = "Chronophylos";
         authors[] = {"Chronophylos"};
         url = ECSTRING(main,URL);
         VERSION_CONFIG;
@@ -15,3 +15,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"
