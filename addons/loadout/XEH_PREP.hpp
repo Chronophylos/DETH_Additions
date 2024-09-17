@@ -1,3 +1,2 @@
-
 PREP(applyLoadout);
 PREP(createLoadout);

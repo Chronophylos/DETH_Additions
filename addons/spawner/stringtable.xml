@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="DTA">
+    <Package name="Spawner">
+        <Container name="Wave Spawner">
+            <Key ID="STR_DTA_Spawner_WaveSpawner_Module_DisplayName">
+                <English>Wave Spawner</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_Module_ShortDescription">
+                <English>Continiously spawn Waves of synched Units near the players.</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInterval_DisplayName">
+                <English>Wave Interval</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInterval_Tooltip">
+                <English>Interval between Waves in seconds</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSize_DisplayName">
+                <English>Wave Size</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSize_Tooltip">
+                <English>The number of Units in each Wave</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSizeModifier_DisplayName">
+                <English>Wave Size Modifier</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSizeModifier_Tooltip">
+                <English>Modifier to the Wave Size. The variable '_size' refers to the selected Wave Size, '_round' to the current round number. Default: '_size'</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInit_DisplayName">
+                <English>Wave Init</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInit_Tooltip">
+                <English>Expression called after creating the Wave. The variable '_this' refers to the created Unit.</English>
+            </Key>
+        </Container>
+    </Package>
+</Project>
