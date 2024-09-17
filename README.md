@@ -27,7 +27,7 @@
 
 ## DOCUMENTATION
 
-_Coming soon (tm)_
+Documentation is available on the [Wiki](https://github.com/Chronophylos/DETH_Additions/wiki)
 
 ## ACKNOWLEDGEMENTS
 
