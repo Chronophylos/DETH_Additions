@@ -1,4 +1,4 @@
-#include "..\script_component.hpp"
+#include "script_component.hpp"
 
 params [
 	["_logic", objNull, [objNull]], // Argument 0 is module logic
