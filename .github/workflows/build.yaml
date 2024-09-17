@@ -37,7 +37,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dta-latest
-          path: release.zip
+          path: ./
       - name: HUH
         run: ls -al
       - name: Create Release Version
@@ -46,7 +46,7 @@ jobs:
           echo Version: $VERSION
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Unzip Artifact
-        run: unzip release.zip
+        run: unzip *.zip
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
@@ -66,11 +66,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dta-latest
-          path: release.zip
+          path: ./
       - name: HUH
         run: ls -al
       - name: Unzip Artifact
-        run: unzip release.zip
+        run: unzip *.zip
       - name: Release
         uses: arma-actions/workshop-upload@v1
         with:
