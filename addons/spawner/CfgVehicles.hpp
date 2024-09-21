@@ -18,12 +18,12 @@ class CfgVehicles {
 		category = "DTA";
 	};
 
-	class GVAR(waveSpawner): DTA_Module {
+	class GVAR(SpawnEnemy): DTA_Module {
 		scope = 2;							// Editor visibility; 2 will show it in the menu, 1 will hide it.
-		displayName = CSTRING(WaveSpawner_Module_DisplayName);
+		displayName = CSTRING(SpawnEnemy_Module_DisplayName);
 		//icon = "\TAG_addonName\data\icon_Nuke_ca.paa";	// Map icon. Delete this entry to use the default icon.
 
-		function = QFUNC(waveSpawner);	// Name of function triggered once conditions are met
+		function = QFUNC(SpawnEnemy);	    // Name of function triggered once conditions are met
 		functionPriority = 1;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 1;						// 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0;				// 1 for module waiting until all synced triggers are activated
@@ -42,43 +42,49 @@ class CfgVehicles {
 			};
 
             class GVAR(interval) {
-                displayName = CSTRING(WaveSpawner_WaveInterval_DisplayName);
-                tooltip = CSTRING(WaveSpawner_WaveInterval_Tooltip);
+                displayName = CSTRING(SpawnEnemy_WaveInterval_DisplayName);
+                tooltip = CSTRING(SpawnEnemy_WaveInterval_Tooltip);
                 property = QGVAR(interval);
-                control = "Timeout";
+                control = "EditShort";
 
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interval),_value,true)]);
-                defaultValue = "[10,15,20]";
+                defaultValue = "30";
 
-                typeName = "ARRAY";
+                typeName = "NUMBER";
             };
 
             class GVAR(size) {
-                displayName = CSTRING(WaveSpawner_WaveSize_DisplayName);
-                tooltip = CSTRING(WaveSpawner_WaveSize_Tooltip);
+                displayName = CSTRING(SpawnEnemy_WaveSize_DisplayName);
+                tooltip = CSTRING(SpawnEnemy_WaveSize_Tooltip);
                 property = QGVAR(size);
-                control = "Timeout";
+                control = "EditShort";
 
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(size),_value,true)]);
-                defaultValue = "[3,4,6]";
+                defaultValue = "10";
 
-                typeName = "ARRAY";
+                typeName = "NUMBER";
             };
 
-            //class WaveSizeModifier: Edit {
-            //    property = QGVAR(WaveSpawner_SizeModifier);
-            //    displayName = CSTRING(WaveSpawner_WaveSizeModifier_DisplayName);
-            //    tooltip = CSTRING(WaveSpawner_WaveSizeModifier_Tooltip);
-            //    defaultValue = """_size""";
-            //};
+            class GVAR(side) {
+                displayName = CSTRING(SpawnEnemy_Side_DisplayName);
+                tooltip = CSTRING(SpawnEnemy_Side_Tooltip);
+                property = QGVAR(side);
+                control = "EditShort";
 
-            class GVAR(Init) {
-				displayName = CSTRING(WaveSpawner_WaveInit_DisplayName);
-				tooltip = CSTRING(WaveSpawner_WaveInit_ToolTip);
-				property = QGVAR(Init);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(side),_value,true)]);
+                defaultValue = "opfor";
+
+                validate = "side";
+                typeName = "SIDE";
+            };
+
+            class GVAR(init) {
+				displayName = CSTRING(SpawnEnemy_WaveInit_DisplayName);
+				tooltip = CSTRING(SpawnEnemy_WaveInit_ToolTip);
+				property = QGVAR(init);
 				control = "EditCodeMulti5";
 
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(Init),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(init),_value,true)]);
                 defaultValue = "''";
 
 				validate = "none";
@@ -90,7 +96,7 @@ class CfgVehicles {
 
 		// Module description (must inherit from base class, otherwise pre-defined entities won't be available)
 		class ModuleDescription: ModuleDescription {
-			description = CSTRING(WaveSpawner_Module_ShortDescription);
+			description = CSTRING(SpawnEnemy_Module_ShortDescription);
 			sync[] = {"CAManBase"};
 
 			class CAManBase {
