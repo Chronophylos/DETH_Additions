@@ -2,34 +2,28 @@
 <Project name="DTA">
     <Package name="Spawner">
         <Container name="Wave Spawner">
-            <Key ID="STR_DTA_Spawner_WaveSpawner_Module_DisplayName">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Module_DisplayName">
                 <English>Wave Spawner</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_Module_ShortDescription">
-                <English>Continiously spawn Waves of synched Units near the players.</English>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Module_ShortDescription">
+                <English>Continiously spawn synched Units near the player. Wrapper around BIS_fnc_SpawnEnemy.</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInterval_DisplayName">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInterval_DisplayName">
                 <English>Wave Interval</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInterval_Tooltip">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInterval_Tooltip">
                 <English>Interval between Waves in seconds</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSize_DisplayName">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveSize_DisplayName">
                 <English>Wave Size</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSize_Tooltip">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveSize_Tooltip">
                 <English>The number of Units in each Wave</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSizeModifier_DisplayName">
-                <English>Wave Size Modifier</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveSizeModifier_Tooltip">
-                <English>Modifier to the Wave Size. The variable '_size' refers to the selected Wave Size, '_round' to the current round number. Default: '_size'</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInit_DisplayName">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_DisplayName">
                 <English>Wave Init</English>
             </Key>
-            <Key ID="STR_DTA_Spawner_WaveSpawner_WaveInit_Tooltip">
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_Tooltip">
                 <English>Expression called after creating the Wave. The variable '_this' refers to the created Unit.</English>
             </Key>
         </Container>

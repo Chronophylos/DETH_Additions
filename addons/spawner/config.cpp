@@ -3,7 +3,7 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {QGVAR(waveSpawner)};
+        units[] = {QGVAR(SpawnEnemy)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"dta_main", "A3_Modules_F"};

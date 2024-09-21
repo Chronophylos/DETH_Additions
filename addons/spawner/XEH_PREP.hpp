@@ -1,1 +1,1 @@
-PREP(waveSpawner);
+PREP(spawnEnemy);
