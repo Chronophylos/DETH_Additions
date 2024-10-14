@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-    <sup><strong>Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases/latest">CBA A3</a>.</sup></strong>
+    <sup><strong>Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases/latest">CBA A3</a> and <a href="https://github.com/acemod/ACE3/releases/latest">ACE3</a>.</sup></strong>
 </p>
 
 **DETH Additions** is a Mission Making Toolbox for the DETH Unit.
