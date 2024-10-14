@@ -23,7 +23,7 @@ class CfgVehicles {
 		displayName = CSTRING(SpawnEnemy_Module_DisplayName);
 		//icon = "\TAG_addonName\data\icon_Nuke_ca.paa";	// Map icon. Delete this entry to use the default icon.
 
-		function = QFUNC(SpawnEnemy);	    // Name of function triggered once conditions are met
+		function = QFUNC(spawnEnemy);	    // Name of function triggered once conditions are met
 		functionPriority = 1;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 1;						// 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0;				// 1 for module waiting until all synced triggers are activated
