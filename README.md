@@ -2,12 +2,12 @@
 
 <p align="center">
     <a href="https://github.com/Chronophylos/DETH_Additions/releases/latest">
-        <img src="https://img.shields.io/github/release/acemod/ACE3.svg?style=flat-square&label=Version" alt="DETH Additions Version">
+        <img src="https://img.shields.io/github/release/Chronophysl/DETH_Additions.svg?style=flat-square&label=Version" alt="DETH Additions Version">
     </a>
     <a href="https://github.com/Chronophylos/DETH_Additions/releases/latest">
         <img src="https://img.shields.io/github/downloads/Chronophylos/DETH_Additions/total.svg?style=flat-square&label=Downloads" alt="DETH Additions Downloads">
     </a>
-    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1508091616">
+    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3332303157">
         <img src="https://img.shields.io/badge/Steam-Workshop-green.svg?style=flat-square" alt="Steam Workshop">
     </a>
     <a href="https://github.com/Chronophylos/DETH_Additions/blob/main/LICENSE">
@@ -24,6 +24,8 @@
 ## FEATURES
 
 -   Apply Loadout on Mission Start using a Preset Unit
+-   Oneway Teleporter using ACE Interaction
+-   Module Wrapper for BIS_fnc_spawnEnemy
 
 ## DOCUMENTATION
 
