@@ -26,6 +26,12 @@
             <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_Tooltip">
                 <English>Expression called after creating the Wave. The variable '_this' refers to the created Unit.</English>
             </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_DisplayName">
+                <English>Side</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_Tooltip">
+                <English>Side of spawned units. Must equal class side.</English>
+            </Key>
         </Container>
     </Package>
 </Project>
