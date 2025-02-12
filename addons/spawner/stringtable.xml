@@ -8,6 +8,18 @@
             <Key ID="STR_DTA_Spawner_SpawnEnemy_Module_ShortDescription">
                 <English>Continiously spawn synched Units near the player. Wrapper around BIS_fnc_SpawnEnemy.</English>
             </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_DisplayName">
+                <English>Side</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_Tooltip">
+                <English>Side of spawned units. Must equal class side.</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_DisplayName">
+                <English>Wave Init</English>
+            </Key>
+            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_Tooltip">
+                <English>Expression called after creating the Wave. The variable '_this' refers to the created Unit.</English>
+            </Key>
             <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInterval_DisplayName">
                 <English>Wave Interval</English>
             </Key>
@@ -19,18 +31,6 @@
             </Key>
             <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveSize_Tooltip">
                 <English>The number of Units in each Wave</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_DisplayName">
-                <English>Wave Init</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_SpawnEnemy_WaveInit_Tooltip">
-                <English>Expression called after creating the Wave. The variable '_this' refers to the created Unit.</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_DisplayName">
-                <English>Side</English>
-            </Key>
-            <Key ID="STR_DTA_Spawner_SpawnEnemy_Side_Tooltip">
-                <English>Side of spawned units. Must equal class side.</English>
             </Key>
         </Container>
     </Package>

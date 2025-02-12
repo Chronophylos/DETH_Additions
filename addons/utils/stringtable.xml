@@ -2,11 +2,11 @@
 <Project name="DTA">
     <Package name="Utility">
         <Container name="Oneway Teleporter">
-            <Key ID="STR_DTA_Utility_OnewayTeleporter_Module_DisplayName">
-                <English>Oneway Teleporter</English>
-            </Key>
             <Key ID="STR_DTA_Utility_OnewayTeleporter_ActionName">
                 <English>Teleport</English>
+            </Key>
+            <Key ID="STR_DTA_Utility_OnewayTeleporter_Module_DisplayName">
+                <English>Oneway Teleporter</English>
             </Key>
         </Container>
     </Package>
