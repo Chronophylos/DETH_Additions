@@ -19,4 +19,4 @@ private _hashes = [
 ];
 
 TRACE_1("Respawned",_hashes);
-["respawned", _hashes] call CBA_fnc_serverEvent;
+["playerRespawned", _hashes] call CBA_fnc_serverEvent;

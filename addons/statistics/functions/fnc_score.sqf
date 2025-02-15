@@ -25,4 +25,4 @@ private _hashes = [
 ];
 
 TRACE_1("Score",_hashes);
-["score", _hashes] call CBA_fnc_serverEvent;
+["playerScore", _hashes] call CBA_fnc_serverEvent;
