@@ -6,11 +6,11 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"dta_main"};
+        requiredAddons[] = {};
+        skipWhenMissingDependencies = 1;
         author = "Chronophylos";
         authors[] = {"Chronophylos"};
         url = ECSTRING(main,URL);
-        VERSION_CONFIG;
     };
 };
 

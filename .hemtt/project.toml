@@ -8,3 +8,6 @@ include = ["LICENSE", "meta.cpp", "mod.cpp", "README.md"]
 
 [version]
 git_hash = 0
+
+[lints.sqf.var_all_caps]
+options.ignore = ["PREP_RECOMPILE_*"]

@@ -32,7 +32,7 @@ if (_activated) then {
 
 			// Attempt to get loadout from Unit and apply it
 			private _loadout = GETVAR(_unit,GVAR(loadout),[]);
-			if !(_loadout isEqualTo []) then {
+			if (_loadout isNotEqualTo []) then {
 				_unit setUnitLoadout [_loadout, true];
 				TRACE_1("Applied Respawn Loadout",_unit);
 			};

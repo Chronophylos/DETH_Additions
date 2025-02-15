@@ -3,3 +3,13 @@ workshop = [
     "450814997", # CBA_A3
     "463939057", # ACE3
 ]
+
+[statistics]
+extends = "default"
+parameters = ["-mod=C:\\Users\\chrono\\Documents\\IFXMetrics\\.hemttout\\dev"]
+
+[antistasi]
+extends = "default"
+workshop = [
+    "3020755032", # Antistasi Ultimate
+]
