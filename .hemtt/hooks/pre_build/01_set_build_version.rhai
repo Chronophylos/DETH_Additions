@@ -10,10 +10,3 @@ version_file.replace(
 );
 print(HEMTT_RFS.join("addons/main/script_version.hpp"));
 HEMTT_RFS.join("addons/main/script_version.hpp").create_file().write(version_file);
-
-// Update mod.cpp
-let modcpp = HEMTT_VFS.join("mod.cpp").open_file().read();
-modcpp.replace("0.0.0", HEMTT.project().version().to_string_short());
-HEMTT_VFS.join("mod.cpp").create_file().write(modcpp);
-
-print(`mod.cpp version set to ${HEMTT.project().version().to_string_short()}.${next_build}`);

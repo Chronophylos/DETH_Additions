@@ -31,6 +31,6 @@ private _hashes = [
 ];
 
 TRACE_1("Chat message",_hashes);
-["chatMessage", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(chat), _hashes] call CBA_fnc_serverEvent;
 
 // Return nothing to allow for default chat handling

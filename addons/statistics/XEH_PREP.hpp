@@ -9,4 +9,5 @@ PREP(firedVehicle);
 PREP(killed);
 PREP(respawned);
 PREP(score);
+PREP(session);
 PREP(unconscious);

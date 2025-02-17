@@ -18,4 +18,4 @@ private _hashes = [
 ];
 
 TRACE_1("Player unconscious",_hashes);
-["playerUnconscious", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(unconscious), _hashes] call CBA_fnc_serverEvent;

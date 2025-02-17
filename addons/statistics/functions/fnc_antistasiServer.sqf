@@ -53,4 +53,4 @@ if (!isNil "areInvadersDefeated") then { _fields pushBack ["invaders_defeated", 
 private _hashes = [_tags, _fields];
 
 TRACE_1("Antistasi server update",_hashes);
-["antistasiServerUpdate", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(antistasiServer), _hashes] call CBA_fnc_serverEvent;

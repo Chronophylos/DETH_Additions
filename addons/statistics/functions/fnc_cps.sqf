@@ -60,7 +60,7 @@ LOG("Starting CPS evaluation...");
                 ]
             ];
             TRACE_1("CPS Update",_hashes);
-            ["cpsUpdate", _hashes] call CBA_fnc_serverEvent;
+            [QGVAR(cps), _hashes] call CBA_fnc_serverEvent;
         };
 
         sleep 0.001;  // yield to prevent a busy loop

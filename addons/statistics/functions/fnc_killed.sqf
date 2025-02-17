@@ -33,4 +33,4 @@ private _hashes = [
 ];
 
 TRACE_1("Player kill",_hashes);
-["playerKill", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(killed), _hashes] call CBA_fnc_serverEvent;

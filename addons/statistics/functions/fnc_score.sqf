@@ -21,4 +21,4 @@ private _hashes = [
 ];
 
 TRACE_1("Score",_hashes);
-["playerScore", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(score), _hashes] call CBA_fnc_serverEvent;

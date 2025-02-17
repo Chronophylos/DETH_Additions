@@ -26,5 +26,5 @@ TRACE_1("Antistasi player update",_players);
     ];
 
     TRACE_1("Antistasi player update",_hashes);
-    ["antistasiPlayerUpdate", _hashes] call CBA_fnc_serverEvent;
+    [QGVAR(antistasiPlayer), _hashes] call CBA_fnc_serverEvent;
 } forEach _players;

@@ -18,4 +18,4 @@ private _hashes = [
 ];
 
 TRACE_1("Player connected",_hashes);
-["playerConnection", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(connection), _hashes] call CBA_fnc_serverEvent;

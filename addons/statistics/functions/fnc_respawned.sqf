@@ -16,4 +16,4 @@ private _hashes = [
 ];
 
 TRACE_1("Respawned",_hashes);
-["playerRespawned", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(respawned), _hashes] call CBA_fnc_serverEvent;

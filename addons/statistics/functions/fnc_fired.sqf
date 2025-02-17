@@ -24,4 +24,4 @@ private _hashes = [
 ];
 
 TRACE_1("Player fired",_hashes);
-["playerFired", _hashes] call CBA_fnc_serverEvent;
+[QGVAR(fired), _hashes] call CBA_fnc_serverEvent;
