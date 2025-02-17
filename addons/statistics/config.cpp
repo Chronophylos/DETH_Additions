@@ -7,7 +7,6 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        skipWhenMissingDependencies = 1;
         author = "Chronophylos";
         authors[] = {"Chronophylos"};
         url = ECSTRING(main,URL);

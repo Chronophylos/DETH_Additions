@@ -1,13 +1,15 @@
 #include "script_component.hpp"
 
-if (!isServer) exitWith {};
-
 //IGNORE_PRIVATE_WARNING ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle", "_gunner", "_turret"];
+
+if (!local _gunner) exitWith {};
 
 private _hashes = [
     [
-        ["player_name", name _unit],
-        ["player_uid", getPlayerUID _unit],
+        ["player_name", name _gunner],
+        ["player_uid", getPlayerUID _gunner],
+        ["vehicle", typeOf _vehicle],
+        ["turret", _turret],
         ["weapon", _weapon],
         ["muzzle", _muzzle],
         ["mode", _mode],
@@ -17,11 +19,11 @@ private _hashes = [
     [
         ["count", 1],
         ["muzzle_velocity", velocity _projectile],
-        ["position_x", getPos _unit select 0],
-        ["position_y", getPos _unit select 1],
-        ["position_z", getPos _unit select 2]
+        ["position_x", getPos _vehicle select 0],
+        ["position_y", getPos _vehicle select 1],
+        ["position_z", getPos _vehicle select 2]
     ]
 ];
 
 TRACE_1("Player fired",_hashes);
-["playerFired", _hashes] call CBA_fnc_serverEvent;
+["playerFiredVehicle", _hashes] call CBA_fnc_serverEvent;

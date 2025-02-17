@@ -1,5 +1,12 @@
+PREP(antistasiPlayer);
+PREP(antistasiServer);
+PREP(chat);
+PREP(connected);
+PREP(cps);
+PREP(disconnected);
 PREP(fired);
+PREP(firedVehicle);
 PREP(killed);
-PREP(antistasi);
 PREP(respawned);
 PREP(score);
+PREP(unconscious);

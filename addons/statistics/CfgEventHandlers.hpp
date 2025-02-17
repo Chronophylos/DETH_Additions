@@ -16,14 +16,6 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_FiredBIS_EventHandlers {
-    class CAManBase {
-        class GVAR(fired) {
-            firedBIS = QUOTE(_this call FUNC(fired));
-        };
-    };
-};
-
 class Extended_Killed_EventHandlers {
     class CAManBase {
         class GVAR(killed) {
