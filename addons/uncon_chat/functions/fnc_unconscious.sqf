@@ -20,12 +20,13 @@ if (isNil QGVAR(radioChannel)) then {
 
 
 if (_state) then {
-    _unit setVariable [QGVAR(oldChannel), currentChannel _unit];
+    _unit setVariable [QGVAR(oldChannel), getPlayerChannel _unit];
     GVAR(radioChannel) radioChannelAdd [_unit];
-    _unit setRadioChannel GVAR(radioChannel);
+    [GVAR(radioChannel), _unit] call remoteExec ["setCurrentChannel", _unit];
 } else {
     GVAR(radioChannel) radioChannelRemove [_unit];
-    _unit setRadioChannel _unit getVariable [QGVAR(oldChannel), 0];
+    private _oldChannel = _unit getVariable [QGVAR(oldChannel), 0];
+    [_oldChannel, _unit] call remoteExec ["setCurrentChannel", _unit];
     _unit setVariable [QGVAR(oldChannel), nil];
 };
 

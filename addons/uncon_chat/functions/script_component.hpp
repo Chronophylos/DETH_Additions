@@ -1,1 +1,1 @@
-#include "\z\dta\addons\NAME\script_component.hpp"
+#include "\z\dta\addons\uncon_chat\script_component.hpp"

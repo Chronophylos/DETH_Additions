@@ -11,9 +11,9 @@ if (isNil "_sessionId") then {
 private _hashes = [
     [],
     [
-        ["session_id", _sessionId],
+        ["session_id", _sessionId]
     ]
 ];
 
-TRACE_1("Session info", _hashes);
+TRACE_1("Session info",_hashes);
 [QGVAR(session), _hashes] call CBA_fnc_serverEvent;
