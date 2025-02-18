@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+// TODO: split into multiple measurements
+
 if (!isServer) exitWith {};
 
 private _players = CBA_fnc_players;

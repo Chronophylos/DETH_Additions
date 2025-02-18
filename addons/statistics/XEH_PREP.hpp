@@ -10,4 +10,5 @@ PREP(killed);
 PREP(respawned);
 PREP(score);
 PREP(session);
+PREP(treated);
 PREP(unconscious);
