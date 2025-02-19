@@ -17,6 +17,9 @@
 
 params ["_unit", "_unconsciousState"];
 
+if (!isServer) exitWith {};
+if (!isPlayer _unit) exitWith {};
+
 private _hashes = [
     [
         ["player_name", name _unit],

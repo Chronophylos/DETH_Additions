@@ -15,6 +15,8 @@
  * [player, true] call DTA_uncon_chat_fnc_unconscious
  */
 
+ // joined and left chat messages are not working on the server
+
 params ["_unit", "_unconsciousState"];
 
 if (!isServer) exitWith {};

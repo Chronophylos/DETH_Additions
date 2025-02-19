@@ -4,7 +4,7 @@
 
 if (!isServer) exitWith {};
 
-private _players = CBA_fnc_players;
+private _players = call CBA_fnc_players;
 
 TRACE_1("Antistasi player update",_players);
 
