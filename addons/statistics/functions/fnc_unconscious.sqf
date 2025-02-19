@@ -1,8 +1,21 @@
 #include "script_component.hpp"
 
-if (!isServer) exitWith {};
+/*
+ * Author: Chronophylos
+ * Handles unconscious state changes for statistics tracking
+ *
+ * Arguments:
+ * 0: Unit <OBJECT>
+ * 1: Unconscious State <BOOL>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [player, true] call DTA_statistics_fnc_unconscious
+ */
 
-//IGNORE_PRIVATE_WARNING ["_unit, _state(BOOL)"];
+params ["_unit", "_unconsciousState"];
 
 private _hashes = [
     [
@@ -10,7 +23,7 @@ private _hashes = [
         ["player_uid", getPlayerUID _unit]
     ],
     [
-        ["unconscious", _state],
+        ["unconscious", _unconsciousState],
         ["position_x", getPos _unit select 0],
         ["position_y", getPos _unit select 1],
         ["position_z", getPos _unit select 2]

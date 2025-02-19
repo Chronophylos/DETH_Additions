@@ -1,4 +1,3 @@
-#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
 if (!isServer) exitWith {};
@@ -8,6 +7,8 @@ params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_
 TRACE_1("Chat message",_this);
 
 if (_text isEqualTo "") exitWith {};
+if (_from isEqualTo "") exitWith {};
+if (_person isEqualTo objNull) exitWith {};
 
 private _player_name = "";
 private _player_uid = "";

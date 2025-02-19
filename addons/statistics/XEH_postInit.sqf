@@ -24,6 +24,6 @@ addMissionEventHandler ["PlayerDisconnected", LINKFUNC(disconnected)];
 
 addMissionEventHandler ["HandleChatMessage", LINKFUNC(chat)];
 
-[LINKFUNC(session), 1, []] call CBA_fnc_addPerFrameHandler;
+[LINKFUNC(session), 10, []] call CBA_fnc_addPerFrameHandler;
 
 ["ace_treatmentSucceded", LINKFUNC(treated)] call CBA_fnc_addEventHandler;
