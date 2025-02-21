@@ -1,4 +1,4 @@
-# DETH Additions
+# DETH Additions 🎮
 
 <p align="center">
     <a href="https://github.com/Chronophylos/DETH_Additions/releases/latest">
@@ -19,27 +19,50 @@
     <sup><strong>Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases/latest">CBA A3</a> and <a href="https://github.com/acemod/ACE3/releases/latest">ACE3</a>.</sup></strong>
 </p>
 
-**DETH Additions** is a Mission Making Toolbox for the DETH Unit.
+---
 
-## FEATURES
+**DETH Additions** is a Mission Making Toolbox for the DETH Unit, designed to enhance your Arma 3 mission creation experience.
 
--   Apply Loadout on Mission Start using a Preset Unit
--   Oneway Teleporter using ACE Interaction
--   Module Wrapper for BIS_fnc_spawnEnemy
+## ✨ Features
 
-## DOCUMENTATION
+### 🎯 Mission Setup
 
-Documentation is available on the [Wiki](https://github.com/Chronophylos/DETH_Additions/wiki)
+-   **Loadout System**
+    -   Apply loadouts on mission start using preset units
+    -   Streamlined equipment management
 
-## ACKNOWLEDGEMENTS
+### 🚀 Mission Tools
 
--   The [ACE3-Team](https://github.com/acemod/ACE3/) for making amazing Open Source Software.
--   [HEMTT](https://github.com/BrettMayson/HEMTT) for bringing modern Tools to Arma 3.
+-   **Oneway Teleporter**
 
-## LICENSE
+    -   Quick unit transportation using ACE Interaction
+    -   Perfect for mission staging areas
+
+-   **Enemy Spawning**
+    -   Enhanced module wrapper for BIS_fnc_spawnEnemy
+    -   Simplified hostile force deployment
+
+### 🎨 Customization
+
+-   **Flag & Vehicle Texture System**
+    -   Add/Reset flags on vehicles via ACE Interaction
+    -   Apply/Reset custom vehicle textures
+    -   Configurable through CBA Settings
+    -   Support for all major vehicle types
+
+## 📚 Documentation
+
+Comprehensive documentation is available on our [Wiki](https://github.com/Chronophylos/DETH_Additions/wiki)
+
+## 🙏 Acknowledgements
+
+-   The [ACE3-Team](https://github.com/acemod/ACE3/) for their outstanding open-source contributions
+-   [HEMTT](https://github.com/BrettMayson/HEMTT) for modernizing Arma 3 development tools
+
+## 📜 License
 
 <a rel="license" href="https://www.bohemia.net/community/licenses/arma-public-license-share-alike" target="_blank">
-	<img src="https://www.bohemia.net/assets/img/licenses/APL-SA.png">
-	<br>
-	This work is licensed under Arma Public License Share Alike
+    <img src="https://www.bohemia.net/assets/img/licenses/APL-SA.png">
+    <br>
+    This work is licensed under Arma Public License Share Alike
 </a>
