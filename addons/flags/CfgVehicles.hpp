@@ -3,6 +3,7 @@
         class ACE_MainActions { \
             class GVAR(FlagMenu) { \
                 displayName = CSTRING(DisplayName); \
+                icon = "\A3\ui_f\data\map\markers\military\flag_CA.paa" \
                 class GVAR(AddFlag) { \
                     displayName = CSTRING(AddFlag); \
                     condition = QUOTE(!(_this call FUNC(hasFlag))); \
