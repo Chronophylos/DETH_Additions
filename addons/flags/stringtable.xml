@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="DTA">
+    <Package name="Flags">
+        <Key ID="STR_DTA_Flags_DisplayName">
+            <English>Flags</English>
+        </Key>
+        <Container name="Flags">
+            <Key ID="STR_DTA_Flags_AddFlag">
+                <English>Add Flag</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_ResetFlag">
+                <English>Reset Flag</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_flagTexture_Description">
+                <English>Texture for the flag</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_flagTexture_DisplayName">
+                <English>Flag Texture</English>
+            </Key>
+        </Container>
+        <Container name="Textures">
+            <Key ID="STR_DTA_Flags_ApplyTexture">
+                <English>Apply Texture</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_ResetTexture">
+                <English>Reset Texture</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_vehicleTexture_Description">
+                <English>Texture for the vehicle</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_vehicleTexture_DisplayName">
+                <English>Vehicle Texture</English>
+            </Key>
+        </Container>
+    </Package>
+</Project>

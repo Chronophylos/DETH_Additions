@@ -13,3 +13,7 @@ extends = "default"
 workshop = [
     "3020755032", # Antistasi Ultimate
 ]
+
+[test-map]
+extends = "default"
+mission = "dta-test.VR"
