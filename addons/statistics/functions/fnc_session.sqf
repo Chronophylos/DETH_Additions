@@ -7,9 +7,11 @@ if (isNil QGVAR(sessionId)) then {
 };
 
 private _hashes = [
-    [],
     [
         ["session_id", GVAR(sessionId)]
+    ],
+    [
+        ["running", true]
     ]
 ];
 
