@@ -21,7 +21,7 @@
     [0, 0, 0, 0],
     2, // isGlobal
     {
-        private _texture = _this call BIS_fnc_colorRGBAtoTexture;
+        private _texture = call BIS_fnc_colorRGBAtoTexture;
         TRACE_2("Updating textures",_value,_texture);
         {
             _x setObjectTextureGlobal [0, _texture];
