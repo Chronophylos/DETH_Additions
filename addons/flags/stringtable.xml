@@ -25,11 +25,11 @@
             <Key ID="STR_DTA_Flags_ResetTexture">
                 <English>Reset Texture</English>
             </Key>
-            <Key ID="STR_DTA_Flags_vehicleTexture_Description">
-                <English>Texture for the vehicle</English>
+            <Key ID="STR_DTA_Flags_vehicleColor_Description">
+                <English>Color for the vehicle</English>
             </Key>
-            <Key ID="STR_DTA_Flags_vehicleTexture_DisplayName">
-                <English>Vehicle Texture</English>
+            <Key ID="STR_DTA_Flags_vehicleColor_DisplayName">
+                <English>Vehicle Color</English>
             </Key>
         </Container>
     </Package>

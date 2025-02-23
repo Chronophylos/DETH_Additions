@@ -14,11 +14,18 @@
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(vehicleTexture),
-    "EDITBOX",
-    [LLSTRING(vehicleTexture_DisplayName), LLSTRING(vehicleTexture_Description)],
+    QGVAR(vehicleColor),
+    "COLOR",
+    [LLSTRING(vehicleColor_DisplayName), LLSTRING(vehicleColor_Description)],
     format ["DETH %1", LLSTRING(DisplayName)],
-    "#(rgb,8,8,3)color(1,1,1,1)",
-    2 // isGlobal
+    [0, 0, 0, 0],
+    2, // isGlobal
+    {
+        private _texture = _this call BIS_fnc_colorRGBAtoTexture;
+        TRACE_2("Updating textures",_value,_texture);
+        {
+            _x setObjectTextureGlobal [0, _texture];
+        } forEach GVAR(coloredVehicles);
+    }
 ] call CBA_fnc_addSetting;
 
