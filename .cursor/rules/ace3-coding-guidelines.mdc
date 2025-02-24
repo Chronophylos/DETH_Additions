@@ -1,0 +1,138 @@
+---
+description: ACE3 Coding Guidelines for DETH Additions
+globs: *.sqf, *.hpp, config.cpp
+alwaysApply: false
+---
+# ACE3 Coding Guidelines for DETH Additions
+
+## 1. Naming Conventions
+
+### 1.1 Variable Names
+
+#### 1.1.1 Global Variable Naming
+- All global variables must start with the DTA prefix followed by the component name
+- Use the `GVAR` macro family for automatic handling (e.g., `GVAR(myVariableName)`)
+- Never use `fnc_` prefix for non-callable code
+
+#### 1.1.2 Private Variable Naming
+- Use self-explanatory variable names, not single characters
+- Use `_variableName` format with camelCase
+- Example: `_velocity` instead of `_v`
+
+#### 1.1.3 Function Naming
+- All functions must use the project prefix, component name, and `fnc_` prefix
+- Use the `PREP` macro for automatic handling
+- Example: `DFUNC(functionName)` which expands to `dta_component_fnc_functionName`
+
+### 1.2 Files & Configuration
+
+#### 1.2.1 SQF Files
+- All SQF scripts must have the `.sqf` file extension
+- Each function should be in its own file
+
+#### 1.2.2 Header Files
+- All header files must have the `.hpp` file extension
+
+#### 1.2.3 Config Elements
+- Split config files into different header files, each with the config's name
+- Include these in the component's `config.cpp`
+- Example:
+  ```cpp
+  #include "CfgVehicles.hpp"
+  ```
+
+### 1.3 Stringtable
+- All user-facing text must be defined in a `stringtable.xml` file
+- No empty stringtable language values
+- Use `CSTRING` and `ECSTRING` macros for localization
+
+## 2. Macro Usage
+
+### 2.1 Script Headers
+- All files must start with:
+  ```sqf
+  #include "script_component.hpp"
+  ```
+
+### 2.2 Function Headers
+- Document all functions with:
+  ```sqf
+  /*
+   * Author: [Name]
+   * [Description]
+   *
+   * Arguments:
+   * 0: First argument <TYPE>
+   * 1: Second argument <TYPE>
+   *
+   * Return Value:
+   * Return value <TYPE>
+   *
+   * Example:
+   * ["example"] call dta_component_fnc_myFunction
+   *
+   * Public: [Yes/No]
+   */
+  ```
+
+## 3. Code Style
+
+### 3.1 Indentation
+- Use 4 spaces for indentation (no tabs)
+- Configure EditorConfig to maintain consistent style
+
+### 3.2 Spacing
+- Use spaces around operators: `a = b + c` not `a=b+c`
+- Use spaces after commas: `[a, b, c]` not `[a,b,c]`
+- Use consistent brace style:
+  ```sqf
+  if (condition) then {
+      code;
+  };
+  ```
+
+### 3.3 Commenting
+- Use `//` for single line comments
+- Use `/* */` for multi-line comments
+- Comments should explain WHY, not WHAT (code should be self-explanatory)
+
+## 4. Global Variables
+
+- Define all global variables in `XEH_preInit.sqf` with default values
+- Use the CBA settings system for user-configurable options
+
+## 5. Multiplayer Compatibility
+
+- Be aware of locality issues in multiplayer
+- Use proper remoteExec where needed
+- Test all code in both SP and MP environments
+
+## 6. Code Efficiency
+
+- Avoid unnecessary calculations in frequently called functions
+- Use `isEqualTo` instead of `==` when possible
+- Cache results of expensive operations that are used multiple times
+
+## 7. Error Handling
+
+- Always check for null objects
+- Use the debugging macros (`TRACE_x`) for development troubleshooting
+- Fail gracefully - if a function can't succeed, it should return a meaningful error
+
+## 8. Module Development
+
+- Follow the module attributes documentation for Eden Editor compatibility
+- Document all module parameters clearly
+- Follow the existing module patterns in the codebase
+
+## 9. ACE3 Interactions
+
+- Use the established ACE interaction patterns
+- Place actions in appropriate menus (self-interaction vs. object interaction)
+- Follow ACE3's icon and naming conventions for consistency
+
+## 10. Code Organization
+
+- Use the standard component structure (XEH, functions, configs)
+- Keep related functionality together
+- Follow the established addon template

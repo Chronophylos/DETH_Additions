@@ -1,0 +1,154 @@
+---
+description: Arma 3 Module Development Guidelines
+globs: *.hpp, CfgVehicles.hpp
+alwaysApply: false
+---
+# Arma 3 Module Development Guidelines
+
+## Module Configuration Guidelines
+
+### 1. Basic Module Structure
+
+- Modules should inherit from `DTA_Module` which inherits from `Module_F`
+- Follow this basic structure:
+  ```cpp
+  class GVAR(ModuleName): DTA_Module {
+      scope = 2;  // 2 = Editor visible
+      displayName = CSTRING(ModuleName_Module_DisplayName);
+      function = QFUNC(functionName);
+      // Additional properties...
+  };
+  ```
+
+### 2. Module Properties
+
+- `functionPriority`: Lower values execute first, use appropriately
+- `isGlobal`: Use 1 for most modules (global execution)
+- `isTriggerActivated`: Set to 1 if module should wait for synced triggers
+- `isDisposable`: Set to 1 if module should only activate once
+- `is3DEN`: Set to 0 unless functionality is needed in Eden Editor
+- `curatorCanAttach`: Control Zeus interactions, usually 0
+
+### 3. Module Attributes
+
+- All attributes must be properly documented
+- Include min/max values where appropriate
+- Always include tooltips for clarity
+- Example:
+  ```cpp
+  class Attributes: AttributesBase {
+      class ModuleDescription: ModuleDescription {};
+
+      class SomeAttribute {
+          displayName = CSTRING(AttributeName_DisplayName);
+          tooltip = CSTRING(AttributeName_Tooltip);
+          property = QGVAR(attributeProperty);
+          control = "Edit";  // Or other control type
+          typeName = "NUMBER";  // Or STRING, BOOL, etc.
+          defaultValue = "0";
+      };
+  };
+  ```
+
+### 4. Module Description
+
+- Every module must have a clear description
+- Specify what objects can be synced with the module
+- Example:
+  ```cpp
+  class ModuleDescription: ModuleDescription {
+      description = CSTRING(ModuleName_Module_Description);
+      sync[] = {"LocationArea_F"};  // Objects that can be synced
+
+      class LocationArea_F {
+          description[] = {
+              CSTRING(ModuleName_Module_LocationAreaDesc)
+          };
+          position = 0;  // position is taken into effect
+          direction = 0;  // direction is taken into effect
+          optional = 1;  // sync is optional
+      };
+  };
+  ```
+
+## Module Implementation Guidelines
+
+### 1. Function Structure
+
+- Module functions must handle both SP and MP environments
+- Use standard header format for documentation
+- Validate all input parameters
+- Example:
+  ```sqf
+  /*
+   * Author: YourName
+   * Description of module functionality
+   *
+   * Arguments:
+   * 0: The module logic <OBJECT>
+   * 1: Synchronized units <ARRAY>
+   * 2: Activated <BOOL>
+   *
+   * Return Value:
+   * None
+   *
+   * Example:
+   * [objNull, [], true] call dta_component_fnc_moduleFunction
+   *
+   * Public: No
+   */
+  ```
+
+### 2. Parameter Handling
+
+- Every module function should validate inputs
+- Handle edge cases gracefully
+- Use default values when appropriate
+- Consider using the `params` command with type checking
+
+### 3. Synchronization
+
+- Check for synced objects using `synchronizedObjects` command
+- Filter synced objects by type if necessary
+- Store needed objects in variables for later use
+
+### 4. Module Settings
+
+- Store settings in the module object for reference
+- Use the `getVariable` and `setVariable` commands with proper namespacing
+- Example:
+  ```sqf
+  _module setVariable [QGVAR(setting), _value];
+  ```
+
+### 5. Event Handling
+
+- Use Event Handlers appropriately for module lifecycle
+- Consider using CBA event handlers for cross-module communication
+- Clean up event handlers when module is deleted
+
+## Best Practices
+
+### 1. User Feedback
+
+- Provide appropriate feedback when module is activated
+- Use hint, systemChat, or custom UI elements as appropriate
+- Clearly indicate success or failure
+
+### 2. Error Handling
+
+- Validate all inputs to prevent runtime errors
+- Provide meaningful error messages for administrators/mission makers
+- Log errors to RPT for troubleshooting
+
+### 3. Performance
+
+- Minimize continuous running code in modules
+- Use scheduled execution for heavy operations
+- Consider using `CBA_fnc_waitAndExecute` for delayed execution
+
+### 4. Testing
+
+- Test in both SP and MP environments
+- Test with various synchronization configurations
+- Verify correct behavior when modules are deleted or re-initiated

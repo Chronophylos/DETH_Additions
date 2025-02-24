@@ -1,0 +1,168 @@
+---
+description: Guidelines for Writing Effective Arma 3 Modding Rules
+globs: *.mdc
+alwaysApply: false
+---
+# Guidelines for Writing Effective Arma 3 Modding Rules
+
+## 1. Rule File Structure
+
+### 1.1 Frontmatter Setup
+- Always include a YAML frontmatter section at the top of each rule file:
+  ```yaml
+  ---
+  description: Clear and concise description of the rule set
+  globs: Comma-separated file patterns (e.g., *.sqf, *.hpp)
+  alwaysApply: Boolean value (usually false)
+  ---
+  ```
+- The `globs` parameter should target specific file types your rules apply to
+- Keep the `description` concise but descriptive of the rule category
+
+### 1.2 Document Organization
+- Use a top-level H1 heading as the main title, matching or extending the description
+- Structure content with clear hierarchical headings (H2 for main sections, H3 for subsections)
+- Number sections (1, 1.1, 1.2, etc.) to provide clear reference points
+- Include a logical progression from basic to advanced concepts
+
+## 2. Rule Content Creation
+
+### 2.1 Rule Types
+- **Directive Rules**: Mandatory practices that should always be followed
+  - Use clear, direct language: "Always do X", "Never use Y"
+  - Example: "Never use `spawn` in multiplayer code"
+
+- **Guideline Rules**: Best practices that should generally be followed
+  - Use softer language: "Consider using X", "Generally prefer Y"
+  - Example: "Consider using event-driven patterns for component communication"
+
+- **Explanatory Rules**: Rules that explain why certain practices exist
+  - Include rationales that justify the practice
+  - Example: "Use efficient data structures to minimize script execution time"
+
+### 2.2 Rule Formatting
+- Use bullet points for clarity and scannability
+- Bold key terms or commands for emphasis
+- Write in present tense, active voice
+- Phrase rules as actions rather than descriptions
+- Keep rule statements concise - aim for one sentence per core rule
+
+## 3. Code Examples
+
+### 3.1 Example Best Practices
+- Always include practical code examples for complex rules
+- Follow this pattern when contrasting approaches:
+  ```sqf
+  // BAD
+  [_params] spawn FUNC(myFunction);
+
+  // GOOD
+  [_params] call FUNC(myFunction);
+  ```
+- Ensure examples demonstrate real-world scenarios from your project
+- Include comments in examples to highlight key points
+
+### 3.2 Example Formatting
+- Use fenced code blocks with appropriate language identifiers:
+  - ````sqf` for SQF code
+  - ````cpp` for config and header files
+  - ````hpp` for preprocessor directives
+- Keep examples concise but complete enough to demonstrate the concept
+- Use project-specific macros (FUNC, GVAR, etc.) in examples
+
+## 4. Project Contextualization
+
+### 4.1 Project-Specific Adaptation
+- Tailor rules to your project's specific needs and conventions
+- Use your project's prefix in examples (e.g., DTA instead of ACE)
+- Reference actual components from your project in examples
+- Align with existing project practices and code style
+
+### 4.2 Compatibility Considerations
+- Address how rules interact with dependencies (ACE3, CBA)
+- Include guidance for integration with the vanilla game
+- Consider multiplayer compatibility in all rule sets
+
+## 5. Visual Presentation
+
+### 5.1 Markdown Elements
+- Use consistent heading levels for hierarchy
+- Employ bullet lists for sets of related rules
+- Create tables for comparative information
+- Use code blocks for all code examples
+- Apply inline code formatting (`like this`) for commands and variables
+
+### 5.2 Readability Enhancement
+- Include white space between sections
+- Keep paragraphs short (3-5 lines)
+- Use subheadings to break up long sections
+- Maintain consistent formatting across rule files
+
+## 6. Rule Scope and Specificity
+
+### 6.1 Domain Focus
+- Create separate rule files for different domains:
+  - General coding standards
+  - Component-specific guidelines
+  - Performance optimization
+  - Multiplayer considerations
+  - Interface development
+  - Module creation
+
+### 6.2 Specificity Balance
+- Be specific enough to provide actionable guidance
+- Avoid being so specific that rules become brittle
+- Focus on principles that scale across different scenarios
+- Address edge cases where appropriate
+
+## 7. Quality Guidelines
+
+### 7.1 Clarity Principles
+- Use simple, direct language
+- Define technical terms when first used
+- Avoid ambiguity in rule statements
+- Be explicit about when rules should be applied
+
+### 7.2 Consistency Requirements
+- Maintain consistent terminology within and across rule files
+- Use the same formatting for similar types of content
+- Ensure rules don't contradict each other across files
+- Align with ACE3 and CBA conventions where appropriate
+
+## 8. Maintenance Approach
+
+### 8.1 Versioning
+- Date or version-tag rule files when significant changes are made
+- Document rule changes in a changelog
+- Communicate rule updates to all developers
+
+### 8.2 Rule Evolution
+- Review rules periodically for relevance
+- Update rules as Arma 3 and its modules evolve
+- Solicit feedback from developers using the rules
+- Remove outdated rules that no longer apply
+
+## 9. Implementation Guidance
+
+### 9.1 Rule Application
+- Include guidance on how to apply rules to existing code
+- Suggest prioritization for rule implementation
+- Differentiate between rules for new code vs. legacy code
+
+### 9.2 Enforcement Strategy
+- Clarify which rules should be strictly enforced
+- Suggest code review practices to ensure rule compliance
+- Consider automated checks where possible
+
+## 10. Example Rule Categories
+
+The following rule categories are recommended for comprehensive coverage:
+
+1. **General Coding Standards** - Basic syntax, style, and naming conventions
+2. **Arma 3 Code Optimization** - Performance best practices specific to Arma
+3. **Multiplayer Scripting** - Client-server architecture and synchronization
+4. **ACE3 Interaction Guidelines** - ACE3-compatible interaction development
+5. **Module Development** - Eden Editor module creation and implementation
+6. **Config Standards** - Configuration file structure and patterns
+
+Each category should have its own .mdc file with focused, relevant rules.

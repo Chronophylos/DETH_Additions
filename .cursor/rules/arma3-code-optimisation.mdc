@@ -1,0 +1,95 @@
+---
+description: Arma 3 Code Optimisation
+globs: *.sqf, *.hpp, config.cpp
+alwaysApply: false
+---
+## General Principles
+
+1. **Make it work first**: Focus on functionality before optimization. As Donald Knuth said, "Premature optimization is the root of all evil."
+
+2. **Make it readable**: Write code that is understandable by both yourself and others.
+
+3. **Optimize later**: Only after your code is working and readable should you focus on performance improvements.
+
+4. **Test thoroughly**: Use `-showScriptErrors` startup parameter and regularly check your RPT logs to catch and fix errors.
+
+## Code Readability
+
+1. **Use meaningful variable names**: Avoid abbreviations like `_u` when `_uniform` would be clearer.
+
+2. **Avoid excessive one-lining**: While it may save memory, it makes code harder to read and debug.
+
+3. **Use proper indentation and spacing**: Space is free; use it to make your code more readable.
+
+4. **Use line breaks appropriately**: Separate logical blocks of code with line breaks.
+
+5. **Use camelCase naming convention**: For variables and functions to improve readability (e.g., `myVariable`, `doSomethingImportant`).
+
+6. **Use preprocessor directives for constants**: Replace hard-coded values with `#define` statements to improve maintainability.
+
+7. **Break down complex functions**: If a function is doing too much, split it into smaller, more manageable functions.
+
+## Performance Optimization
+
+1. **Use appropriate commands based on performance needs**:
+   - `call` is faster than `execVM` for executing functions
+   - `select` can be faster than nested `if` statements
+   - `vectorMultiply` is much faster than `BIS_fnc_vectorMultiply`
+   - `param`/`params` are 14 times faster than `BIS_fnc_param`
+
+2. **Choose efficient data structures**:
+   - Use `createHashMapFromArray` for key-value data structures (since Arma 3 v2.02)
+   - Store config paths in variables when accessed repeatedly
+
+3. **Optimize loops**:
+   - Replace `forEach` with `apply`, `count`, `findIf`, or `select` when appropriate
+   - Use `select` with condition rather than `forEach` with `if` statements
+
+4. **Optimize string operations**:
+   - Use `toLowerANSI`/`toUpperANSI` instead of `toLower`/`toUpper` for better performance
+   - Use `joinString` and `splitString` for efficient string manipulation
+
+5. **Optimize array operations**:
+   - Use `pushBack` instead of `myArray + [element]`
+   - Use `selectRandom` instead of `BIS_fnc_selectRandom`
+   - Use `deleteAt`/`deleteRange` for removing elements
+   - Use `append` for combining arrays when appropriate
+   - Use `arrayIntersect` for finding common items
+
+6. **Cache global variables locally** when used in loops:
+   ```sqf
+   private _var = SomeGlobalVariable;
+   for "_i" from 1 to 100 do { _var select 0; };
+   ```
+
+7. **Use the fastest position commands** when possible:
+   - `getPosWorld` and `setPosWorld` are generally faster than alternatives
+
+## Multiplayer Considerations
+
+1. **Use modern remote execution commands**:
+   - Replace `BIS_fnc_MP` with `remoteExec` and `remoteExecCall`
+
+2. **Be mindful of network traffic**:
+   - Minimize the amount of data transmitted over the network
+   - Use local variables when possible to reduce overhead
+
+3. **Follow multiplayer scripting best practices** as outlined in [arma3-multiplayer-scripting.mdc](mdc:.cursor/rules/arma3-multiplayer-scripting.mdc)
+
+## Modern Command Usage
+
+1. **Use modern Arma 3 commands** instead of legacy alternatives:
+   - `linearConversion` instead of `BIS_fnc_linearConversion` (9× faster)
+   - `selectRandomWeighted` instead of `BIS_fnc_selectRandomWeighted` (7× faster)
+   - `isEqualType` instead of `typeName` for type comparison
+   - `isEqualTo` instead of `BIS_fnc_areEqual` for comparing arrays
+
+2. **For object creation and manipulation**:
+   - Consider `createSimpleObject` over `createVehicle` when appropriate
+   - Use `nearEntities` instead of `nearestObjects` for better performance with ranges over 100m
+
+3. **Use config path optimizations**:
+   - `>>` is slightly faster than `/` when used in config paths
+   - Store config paths in variables: `_cfgVehicles = configFile >> "CfgVehicles"`
+
+By following these rules, you'll create Arma 3 scripts that are both efficient and maintainable, balancing readability with performance where it matters most.

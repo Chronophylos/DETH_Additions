@@ -3,69 +3,176 @@ description: Arma 3 Multiplayer Scripting
 globs: *.sqf
 alwaysApply: false
 ---
-## Understanding Multiplayer Architecture
+# Arma 3 Multiplayer Scripting Guidelines
 
-1. Remember that in multiplayer, players connect to a server that distributes information
-2. The server can be either dedicated or player-hosted
-3. Clients can join missions in progress (JIP), requiring special handling
+## 1. Understanding Multiplayer Architecture
 
-## Locality Rules
+### 1.1 Client-Server Architecture
+- Arma 3 uses a client-server architecture for multiplayer
+- Server is the authority for game state
+- Clients receive updates from the server
+- JIP (Join In Progress) players need special consideration
 
-4. Understand the difference between local/remote execution and local/global effects
-5. Always check locality before executing certain commands
-6. Use proper machine targeting:
-   - `isServer`: Any server (dedicated or player-hosted)
-   - `isDedicated`: Dedicated servers only
-   - `hasInterface`: Any machine with visual interface (player clients)
-   - `hasInterface && isServer`: Player-hosted servers
-   - `hasInterface && !isServer`: Player clients
-   - `!hasInterface && !isDedicated`: Headless clients
+### 1.2 Machine Types
+- **Server**: Can be dedicated or player-hosted
+- **Client**: Players connecting to the server
+- **Headless Client**: Server-side processing without visual interface
 
-## Server-Client Responsibilities
+## 2. Locality System
 
-7. Server should be the "ruler" of the mission and act as referee
-8. Server should initialize and maintain the source of truth for variables
-9. Server should make decisions and broadcast them to clients
-10. Never trust client-side data for mission-critical decisions
-11. Client-side code should focus on UI elements and player experience
-12. Remember clients can disconnect at any time - design accordingly
-13. Never reference player variables directly on dedicated servers
-14. Use `allPlayers`, `BIS_fnc_listPlayers`, `playableUnits` to reference players
+### 2.1 Locality Checks
+- Always check where code is executing before performing certain actions
+- Use these pre-defined variables for checks:
+  - `isServer`: Any server (dedicated or player-hosted)
+  - `isDedicated`: Dedicated servers only (no interface)
+  - `hasInterface`: Any machine with visual interface (player clients)
+  - `isMultiplayer`: Whether in multiplayer mode
+  - `!(isServer && hasInterface)`: Clients only (not host)
+  - `(isServer && hasInterface)`: Player-hosted server only
 
-## Network Communication
+### 2.2 Common Patterns
+```sqf
+// Server-only code
+if (isServer) then {
+    // Code that should run only on server
+};
 
-15. Use `remoteExec`/`remoteExecCall` to execute code on other machines
-16. Use `publicVariable` commands for sending information across the network
-17. Use `setVariable` with global flag for shared variables
+// Client-only code
+if (hasInterface) then {
+    // Code that should run only on clients
+};
 
-## JIP (Join In Progress) Handling
+// Headless client code
+if (!hasInterface && !isDedicated) then {
+    // Code that should run only on headless clients
+};
+```
 
-18. Remember initialization fields get executed again for each JIP player
-19. Code with global effects will be re-executed (depending on locality)
-20. Use proper JIP synchronization methods for late-joining players
+## 3. Network Communication
 
-## Code Writing Methodology
+### 3.1 Remote Execution
 
-21. Plan thoroughly before implementing
-22. First make it work, then make it readable, finally optimize
-23. Use meaningful variable names
-24. Always use the `-showScriptErrors` parameter during development
-25. Follow code optimization best practices:
-    - Use performance-friendly commands
-    - Reduce search radius and loop frequencies
+- Use `remoteExec` and `remoteExecCall` for network communication
+- Always specify target machine(s) explicitly:
+  - `0`: Execute on server only
+  - `1`: Execute on all clients (including server if it has interface)
+  - `2`: Execute on all machines (server, clients, HC)
+  - Client ID: Execute on specific client
+  - Object: Execute on machine where object is local
 
-## Testing Best Practices
+```sqf
+// Execute on server
+[_params] remoteExec ["FUNC(serverFunction)", 0];
 
-26. Test in Singleplayer, Player-hosted Multiplayer, and Dedicated Server environments
-27. Use dedicated server with multiple clients for thorough testing
-28. Test headless client functionality if applicable
-29. Examine RPT logs on both clients and server for errors
-30. Disable BattlEye when testing multiple instances on one machine
+// Execute on all clients
+[_params] remoteExec ["FUNC(clientFunction)", -2];
 
-## Error Handling
+// Execute on specific client
+[_params] remoteExec ["FUNC(specificClientFunction)", _clientID];
 
-31. Always check for null objects
-32. Use proper error handling and reporting
-33. Design for graceful degradation if things go wrong
+// Execute where object is local
+[_params] remoteExec ["FUNC(objectFunction)", _object];
+```
+
+### 3.2 Public Variables
+
+- Use public variables (`publicVariable`, `publicVariableServer`, `publicVariableClient`) for state synchronization
+- Prefix all public variables with the mod prefix to avoid conflicts
+- Consider using CBA events instead for cleaner code
+
+```sqf
+// Setting and broadcasting a public variable
+GVAR(someValue) = 5;
+publicVariable QGVAR(someValue);
+
+// Alternative using CBA Events (preferred)
+["dta_eventName", [_param1, _param2]] call CBA_fnc_globalEvent;
+```
+
+## 4. Object Ownership & Locality
+
+### 4.1 Object Locality
+
+- Objects are "local" to one machine at a time
+- Only the machine where an object is local can control certain aspects
+- Use `local _object` to check if an object is local
+- Use `owner _object` to get the owner's client ID
+
+### 4.2 JIP Considerations
+
+- Consider players joining mid-mission
+- Use `remoteExec` with `jip` parameter for persistent actions
+- Store JIP IDs for later removal if needed
+
+```sqf
+// JIP persistent action
+_jipID = [_params] remoteExec ["FUNC(setupClient)", -2, true];
+
+// Store the JIP ID for later removal if needed
+GVAR(myJipID) = _jipID;
+
+// Remove a JIP entry later
+remoteExec ["", GVAR(myJipID)];
+```
+
+## 5. Scheduler Considerations in MP
+
+### 5.1 Avoid Scheduled Code
+
+- Never use `spawn`, `execVM`, `sleep`, or `waitUntil` in MP code
+- These can cause desynchronization between clients
+- Use CBA alternatives as described in the Code Optimisation rules
+
+### 5.2 Event-Driven Architecture
+
+- Use CBA events for most inter-component communication
+- Use `CBA_fnc_globalEvent` for events that need to broadcast
+- Use `CBA_fnc_serverEvent` for events that should only be processed by server
+- Use `CBA_fnc_localEvent` for local-only events
+
+```sqf
+// Global event (all machines)
+["dta_flagChanged", [_vehicle, _flagType]] call CBA_fnc_globalEvent;
+
+// Server-only event
+["dta_requestSpawn", [_position, _type]] call CBA_fnc_serverEvent;
+
+// Local-only event
+["dta_uiUpdate", [_control, _value]] call CBA_fnc_localEvent;
+```
+
+## 6. Synchronized Execution
+
+### 6.1 Proper Synchronization
+
+- Never assume actions happen at the same time on all machines
+- Use callbacks and events to confirm completion
+- Consider using ACE's common_progress for synchronized actions
+
+### 6.2 Object Creation
+
+- Create objects on the server whenever possible
+- Use `remoteExec` to inform clients about newly created objects
+- Remember objects persist for JIP players but execution does not
+
+## 7. DETH Additions Specific Patterns
+
+### 7.1 Vehicle Customization
+
+- Server should be the authority for vehicle appearance
+- Use CBA events to synchronize texture and flag changes
+- Consider performance impact of frequent appearance changes
+
+### 7.2 Teleporter System
+
+- Handle teleportation primarily on the server
+- Use appropriate remoteExec calls for player movement
+- Ensure all clients are properly updated on teleportation
+
+### 7.3 Statistics System
+
+- Store statistics centrally on server
+- Use appropriate methods to synchronize with clients
+- Consider persistence mechanisms for long-term storage
 
 Following these guidelines will help ensure your Arma 3 mods and scripts work reliably in multiplayer environments, providing a consistent experience for all players regardless of whether they're hosting or joining a mission.
