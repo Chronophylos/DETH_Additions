@@ -8,6 +8,9 @@
             <Key ID="STR_DTA_Utility_OnewayTeleporter_Module_DisplayName">
                 <English>Oneway Teleporter</English>
             </Key>
+            <Key ID="STR_DTA_Utility_OnewayTeleporter_Module_ShortDescription">
+                <English>This module creates a one-way teleporter between objects.</English>
+            </Key>
         </Container>
     </Package>
 </Project>

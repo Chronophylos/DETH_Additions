@@ -1,3 +1,6 @@
 {
-    "conventionalCommits.scopes": ["wiki"]
+    "conventionalCommits.scopes": [
+        "wiki",
+        "utils"
+    ]
 }
