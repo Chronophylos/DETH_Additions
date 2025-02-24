@@ -4,7 +4,7 @@ prefix = "dta"
 mainprefix = "z"
 
 [files]
-include = ["LICENSE", "meta.cpp", "mod.cpp", "README.md"]
+include = ["LICENSE", "meta.cpp", "mod.cpp", "README.md", "CHANGELOG.md"]
 
 [version]
 git_hash = 0
