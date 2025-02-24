@@ -5,3 +5,4 @@ hemtt.exe
 *.biprivatekey
 releases
 node_modules
+.cursor/mcp.json
