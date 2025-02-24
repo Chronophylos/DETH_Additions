@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "conventional-changelog-angular": "^8.0.0",
+        "conventional-changelog-cli": "^5.0.0",
+        "conventional-recommended-bump": "^11.0.0"
+    }
+}
