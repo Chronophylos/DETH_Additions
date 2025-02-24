@@ -1,0 +1,71 @@
+---
+description: Arma 3 Multiplayer Scripting
+globs: *.sqf
+alwaysApply: false
+---
+## Understanding Multiplayer Architecture
+
+1. Remember that in multiplayer, players connect to a server that distributes information
+2. The server can be either dedicated or player-hosted
+3. Clients can join missions in progress (JIP), requiring special handling
+
+## Locality Rules
+
+4. Understand the difference between local/remote execution and local/global effects
+5. Always check locality before executing certain commands
+6. Use proper machine targeting:
+   - `isServer`: Any server (dedicated or player-hosted)
+   - `isDedicated`: Dedicated servers only
+   - `hasInterface`: Any machine with visual interface (player clients)
+   - `hasInterface && isServer`: Player-hosted servers
+   - `hasInterface && !isServer`: Player clients
+   - `!hasInterface && !isDedicated`: Headless clients
+
+## Server-Client Responsibilities
+
+7. Server should be the "ruler" of the mission and act as referee
+8. Server should initialize and maintain the source of truth for variables
+9. Server should make decisions and broadcast them to clients
+10. Never trust client-side data for mission-critical decisions
+11. Client-side code should focus on UI elements and player experience
+12. Remember clients can disconnect at any time - design accordingly
+13. Never reference player variables directly on dedicated servers
+14. Use `allPlayers`, `BIS_fnc_listPlayers`, `playableUnits` to reference players
+
+## Network Communication
+
+15. Use `remoteExec`/`remoteExecCall` to execute code on other machines
+16. Use `publicVariable` commands for sending information across the network
+17. Use `setVariable` with global flag for shared variables
+
+## JIP (Join In Progress) Handling
+
+18. Remember initialization fields get executed again for each JIP player
+19. Code with global effects will be re-executed (depending on locality)
+20. Use proper JIP synchronization methods for late-joining players
+
+## Code Writing Methodology
+
+21. Plan thoroughly before implementing
+22. First make it work, then make it readable, finally optimize
+23. Use meaningful variable names
+24. Always use the `-showScriptErrors` parameter during development
+25. Follow code optimization best practices:
+    - Use performance-friendly commands
+    - Reduce search radius and loop frequencies
+
+## Testing Best Practices
+
+26. Test in Singleplayer, Player-hosted Multiplayer, and Dedicated Server environments
+27. Use dedicated server with multiple clients for thorough testing
+28. Test headless client functionality if applicable
+29. Examine RPT logs on both clients and server for errors
+30. Disable BattlEye when testing multiple instances on one machine
+
+## Error Handling
+
+31. Always check for null objects
+32. Use proper error handling and reporting
+33. Design for graceful degradation if things go wrong
+
+Following these guidelines will help ensure your Arma 3 mods and scripts work reliably in multiplayer environments, providing a consistent experience for all players regardless of whether they're hosting or joining a mission.
