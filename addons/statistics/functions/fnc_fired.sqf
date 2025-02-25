@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 
-if (!isServer) exitWith {};
-
 //IGNORE_PRIVATE_WARNING ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle", "_gunner", "_turret"];
+
+if (!local _unit) exitWith {};
 
 private _hashes = [
     [
