@@ -19,6 +19,9 @@ if (_isAntistasiLoaded) then {
 
 ["ace_treatmentSucceded", LINKFUNC(treated)] call CBA_fnc_addEventHandler;
 
+// Add ace_finger_fingered event handler to record finger pointing measurements
+["ace_finger_fingered", LINKFUNC(fingered)] call CBA_fnc_addEventHandler;
+
 if (isServer) then {
     [LINKFUNC(score), 10, []] call CBA_fnc_addPerFrameHandler;
 

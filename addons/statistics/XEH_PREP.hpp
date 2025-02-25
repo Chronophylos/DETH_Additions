@@ -4,6 +4,7 @@ PREP(chat);
 PREP(connected);
 PREP(cps);
 PREP(disconnected);
+PREP(fingered);
 PREP(fired);
 PREP(firedVehicle);
 PREP(killed);
