@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
+* document IFXMetrics as the statistics → InfluxDB bridge; refresh Statistics wiki for client/server pipeline
 * fix README badge typo; document Statistics and Uncon Chat
 * add Modules wiki page; repair Home wiki links
 

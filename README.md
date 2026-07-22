@@ -53,8 +53,9 @@
 ### 📊 Server Tools
 
 -   **Statistics**
-    -   Server/host-only telemetry for Antistasi-style missions
-    -   Session-scoped event collection (does not run on pure clients)
+    -   Mission telemetry as CBA server events (session-scoped)
+    -   Clients collect ACE actions; server/host collects mission metrics
+    -   Intended consumer: [IFXMetrics](https://github.com/Chronophylos/IFXMetrics) → InfluxDB
 
 -   **Uncon Chat**
     -   Chat handling while ACE unconscious
