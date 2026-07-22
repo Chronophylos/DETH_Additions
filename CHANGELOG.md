@@ -9,13 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Features
 
-* **statistics:** add session_id tags and restrict to server/host ([dec833f](https://github.com/Chronophylos/DETH_Additions/commit/dec833f))
+* **statistics:** add session_id tags ([dec833f](https://github.com/Chronophylos/DETH_Additions/commit/dec833f))
 * **statistics:** add statistic for ace pointing ([a1197fa](https://github.com/Chronophylos/DETH_Additions/commit/a1197fa))
 * **flags:** add vehicle killed event handler for flag and texture reset ([52d781c](https://github.com/Chronophylos/DETH_Additions/commit/52d781c))
 
 ### Bug Fixes
 
+* **statistics:** restore client ACE collection; broadcast session_id; bind fired params
+* **statistics:** restore Antistasi per-player sampling on clients
+* **statistics:** skip empty scores without aborting the rest of the roster
 * **statistics:** fired event never sending data ([c93d800](https://github.com/Chronophylos/DETH_Additions/commit/c93d800))
+* **spawner:** attack and spawn near the selected player (`BIS_fnc_spawnEnemy` arg order)
+* **flags:** publicize texture reset; killed cleanup uses flag/texture state
 * **utils:** add missing stringtable entry ([3c532cc](https://github.com/Chronophylos/DETH_Additions/commit/3c532cc))
 * **flags:** fix applyTexture undefined var and vehicleColor setting callback
 * **spawner:** run Spawn Enemy on server only; stop using local `player`
