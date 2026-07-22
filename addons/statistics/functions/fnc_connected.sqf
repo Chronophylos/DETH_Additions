@@ -8,6 +8,7 @@ if (_name isEqualTo "__SERVER__") exitWith {};
 
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", _name],
         ["player_uid", _uid],
         ["jip", _jip]

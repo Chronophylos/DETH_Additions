@@ -18,12 +18,12 @@
 
 params ["_sourceUnit", "_pointPosition"];
 
-if (!local _sourceUnit) exitWith {};
-if (_sourceUnit isNotEqualTo ACE_player) exitWith {};
+if (!isServer) exitWith {};
 
 // Format data as hashes to match other statistics functions
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", name _sourceUnit],
         ["player_uid", getPlayerUID _sourceUnit]
     ],

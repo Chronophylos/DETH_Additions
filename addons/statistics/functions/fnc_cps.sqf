@@ -52,6 +52,7 @@ LOG("Starting CPS evaluation...");
             _lastEventTime = _currentTime;
             private _hashes = [
                 [
+                    ["session_id", GVAR(sessionId)],
                     ["profile_name", profileName]
                 ],
                 [

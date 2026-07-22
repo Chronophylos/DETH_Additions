@@ -4,8 +4,10 @@
 
 if (!isServer) exitWith {};
 
+private _tags = [
+    ["session_id", GVAR(sessionId)]
+];
 private _fields = [];
-private _tags = [];
 
 // HR and Resources
 private _hr = if (!isNil {server getVariable "hr"}) then { _fields pushBack ["hr", server getVariable "hr"]; server getVariable "hr" };

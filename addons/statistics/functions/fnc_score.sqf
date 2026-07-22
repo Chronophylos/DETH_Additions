@@ -8,6 +8,7 @@ if (!isServer) exitWith {};
 
     private _hashes = [
         [
+            ["session_id", GVAR(sessionId)],
             ["player_name", name _x],
             ["player_uid", getPlayerUID _x]
         ],

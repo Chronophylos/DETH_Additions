@@ -2,10 +2,6 @@
 
 if (!isServer) exitWith {};
 
-if (isNil QGVAR(sessionId)) then {
-    GVAR(sessionId) = hashValue systemTime;
-};
-
 private _hashes = [
     [
         ["session_id", GVAR(sessionId)]

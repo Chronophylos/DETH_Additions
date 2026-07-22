@@ -2,6 +2,7 @@
 
 params ["_caller", "_target", "_bodyPart", "_treatment", "_itemUser", "_usedItem", "_createLitter"];
 
+if (!isServer) exitWith {};
 if (!isPlayer _caller) exitWith {};
 
 private _targetUID = getPlayerUID _target;
@@ -11,6 +12,7 @@ if (_targetUID == "") then {
 
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", name _caller],
         ["player_uid", getPlayerUID _caller],
         ["target_name", name _target],

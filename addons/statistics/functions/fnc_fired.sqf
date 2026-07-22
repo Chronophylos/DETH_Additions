@@ -2,10 +2,13 @@
 
 //IGNORE_PRIVATE_WARNING ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle", "_gunner", "_turret"];
 
-if (!local _unit) exitWith {};
+if (!isServer) exitWith {};
 
+private _velocity = velocity _projectile;
+private _position = getPos _unit;
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", name _unit],
         ["player_uid", getPlayerUID _unit],
         ["weapon", _weapon],
@@ -16,10 +19,12 @@ private _hashes = [
     ],
     [
         ["count", 1],
-        ["muzzle_velocity", velocity _projectile],
-        ["position_x", getPos _unit select 0],
-        ["position_y", getPos _unit select 1],
-        ["position_z", getPos _unit select 2]
+        ["muzzle_velocity_x", _velocity select 0],
+        ["muzzle_velocity_y", _velocity select 1],
+        ["muzzle_velocity_z", _velocity select 2],
+        ["position_x", _position select 0],
+        ["position_y", _position select 1],
+        ["position_z", _position select 2]
     ]
 ];
 

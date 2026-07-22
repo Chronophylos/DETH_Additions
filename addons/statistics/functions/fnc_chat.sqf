@@ -20,6 +20,7 @@ if (isPlayer _person) then {
 
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", _player_name],
         ["player_uid", _player_uid],
         ["name", _name],

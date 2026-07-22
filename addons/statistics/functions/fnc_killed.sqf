@@ -16,6 +16,7 @@ private _isTeamKill = side _killer isEqualTo side _unit;
 
 private _hashes = [
     [
+        ["session_id", GVAR(sessionId)],
         ["player_name", name _killer],
         ["player_uid", getPlayerUID _killer],
         ["target_name", name _unit],
