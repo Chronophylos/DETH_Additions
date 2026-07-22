@@ -22,7 +22,8 @@ if (_activated) then {
     private _targets = allPlayers select {alive _x};
     private _target = if (_targets isNotEqualTo []) then { selectRandom _targets } else { _logic };
 
-    [_logic, _target, _side, _classes, _size, random _interval, _initCode] spawn BIS_fnc_spawnEnemy;
+    // BIS_fnc_spawnEnemy: [attackTarget, spawnPosition, ...] — attack and spawn near the player
+    [_target, _target, _side, _classes, _size, random _interval, _initCode] spawn BIS_fnc_spawnEnemy;
 };
 // Module function is executed by spawn command, so returned value is not necessary, but it is good practice.
 true;
