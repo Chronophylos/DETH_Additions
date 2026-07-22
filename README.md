@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/Chronophylos/DETH_Additions/releases/latest">
-        <img src="https://img.shields.io/github/release/Chronophysl/DETH_Additions.svg?style=flat-square&label=Version" alt="DETH Additions Version">
+        <img src="https://img.shields.io/github/release/Chronophylos/DETH_Additions.svg?style=flat-square&label=Version" alt="DETH Additions Version">
     </a>
     <a href="https://github.com/Chronophylos/DETH_Additions/releases/latest">
         <img src="https://img.shields.io/github/downloads/Chronophylos/DETH_Additions/total.svg?style=flat-square&label=Downloads" alt="DETH Additions Downloads">
@@ -49,6 +49,15 @@
     -   Apply/Reset custom vehicle textures
     -   Configurable through CBA Settings
     -   Support for all major vehicle types
+
+### 📊 Server Tools
+
+-   **Statistics**
+    -   Server/host-only telemetry for Antistasi-style missions
+    -   Session-scoped event collection (does not run on pure clients)
+
+-   **Uncon Chat**
+    -   Chat handling while ACE unconscious
 
 ## 📚 Documentation
 

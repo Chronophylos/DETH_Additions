@@ -1,5 +1,45 @@
-# [](https://github.com/Chronophylos/DETH_Additions/compare/v1.3.4...v) (2025-02-24)
+# Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Features
+
+* **statistics:** add session_id tags and restrict to server/host ([dec833f](https://github.com/Chronophylos/DETH_Additions/commit/dec833f))
+* **statistics:** add statistic for ace pointing ([a1197fa](https://github.com/Chronophylos/DETH_Additions/commit/a1197fa))
+* **flags:** add vehicle killed event handler for flag and texture reset ([52d781c](https://github.com/Chronophylos/DETH_Additions/commit/52d781c))
+
+### Bug Fixes
+
+* **statistics:** fired event never sending data ([c93d800](https://github.com/Chronophylos/DETH_Additions/commit/c93d800))
+* **utils:** add missing stringtable entry ([3c532cc](https://github.com/Chronophylos/DETH_Additions/commit/3c532cc))
+* **flags:** fix applyTexture undefined var and vehicleColor setting callback
+* **spawner:** run Spawn Enemy on server only; stop using local `player`
+* **uncon_chat:** use channel id + 5 for `enableChannel`
+
+### Refactors
+
+* **statistics:** make postInit easier to read ([6c0b37e](https://github.com/Chronophylos/DETH_Additions/commit/6c0b37e))
+
+### Build
+
+* include CHANGELOG.md in mod release ([8ce3c45](https://github.com/Chronophylos/DETH_Additions/commit/8ce3c45))
+* bump `actions/checkout` to v4
+
+### Documentation
+
+* fix README badge typo; document Statistics and Uncon Chat
+* add Modules wiki page; repair Home wiki links
+
+## [1.4.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.3.4...v1.4.0) (2025-02-24)
+
+### Features
+
+* **flags:** change texture to color ([5b0ad6a](https://github.com/Chronophylos/DETH_Additions/commit/5b0ad6a659a52f3bb2f8dcb2d61010456ed3d5ec))
 
 ### Bug Fixes
 
@@ -8,42 +48,18 @@
 * **statistics:** crash on mission start on server ([a8acf57](https://github.com/Chronophylos/DETH_Additions/commit/a8acf572c981af6d749d80921fd614c1bab6d83f)), closes [#5](https://github.com/Chronophylos/DETH_Additions/issues/5)
 * **uncon_chat:** script error when going unconscious ([219c55f](https://github.com/Chronophylos/DETH_Additions/commit/219c55f176f972abcbb5718e536a611a9032be89))
 
-
-### Features
-
-* **flags:** change texture to color ([5b0ad6a](https://github.com/Chronophylos/DETH_Additions/commit/5b0ad6a659a52f3bb2f8dcb2d61010456ed3d5ec))
-
-
-
 ## [1.3.4](https://github.com/Chronophylos/DETH_Additions/compare/v1.3.2...v1.3.4) (2025-02-21)
-
-
 
 ## [1.3.2](https://github.com/Chronophylos/DETH_Additions/compare/v1.3.1...v1.3.2) (2025-02-19)
 
-
-
 ## [1.3.1](https://github.com/Chronophylos/DETH_Additions/compare/v1.3.0...v1.3.1) (2025-02-18)
-
-
 
 # [1.3.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.2.0...v1.3.0) (2025-02-18)
 
-
-
 # [1.2.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.1.1...v1.2.0) (2025-02-15)
-
-
 
 ## [1.1.1](https://github.com/Chronophylos/DETH_Additions/compare/v1.1.0...v1.1.1) (2024-10-18)
 
-
-
 # [1.1.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.0.0...v1.1.0) (2024-10-14)
 
-
-
 # 1.0.0 (2024-09-17)
-
-
-
