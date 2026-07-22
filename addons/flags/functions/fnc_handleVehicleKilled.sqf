@@ -18,17 +18,16 @@
 
 params ["_vehicle", "_killer", "_instigator", "_useEffects"];
 
-// Skip if no valid vehicle
 if (isNull _vehicle) exitWith {
     TRACE_1("No valid vehicle found",_vehicle);
 };
 
-// Remove flag if present
-if (_vehicle in GVAR(flaggedVehicles)) then {
+// Prefer engine/public state over machine-local tracking arrays (applier may have disconnected)
+if (getForcedFlagTexture _vehicle isNotEqualTo "") then {
     [_vehicle] call FUNC(resetFlag);
 };
 
-// Remove texture if present
-if (_vehicle in GVAR(coloredVehicles)) then {
+private _oldTexture = GETVAR(_vehicle,GVAR(oldTexture),nil);
+if (!isNil "_oldTexture") then {
     [_vehicle] call FUNC(resetTexture);
 };

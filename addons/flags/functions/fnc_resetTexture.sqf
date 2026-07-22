@@ -18,6 +18,6 @@ TRACE_2("Resetting texture",_target,_oldTexture);
 
 _target setObjectTextureGlobal [0, _oldTexture];
 
-SETVAR(_target,GVAR(oldTexture),nil);
+SETPVAR(_target,GVAR(oldTexture),nil);
 
 GVAR(coloredVehicles) = GVAR(coloredVehicles) - [_target];

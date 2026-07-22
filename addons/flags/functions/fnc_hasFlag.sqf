@@ -9,4 +9,4 @@ if (_target isEqualTo objNull) exitWith {
     false
 };
 
-getForcedFlagTexture _target != ""
+getForcedFlagTexture _target isNotEqualTo ""
