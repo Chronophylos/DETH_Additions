@@ -2,7 +2,7 @@
 
 params ["_caller", "_target", "_bodyPart", "_treatment", "_itemUser", "_usedItem", "_createLitter"];
 
-if (!isServer) exitWith {};
+if (isNil QGVAR(sessionId)) exitWith {};
 if (!isPlayer _caller) exitWith {};
 
 private _targetUID = getPlayerUID _target;

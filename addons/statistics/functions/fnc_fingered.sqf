@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
- * Author: Your Name
- * Handles the ace_finger_fingered event and records measurements when the source is ACE_player
+ * Author: Chronophylos
+ * Handles ace_finger_fingered and records a measurement for the local player.
  *
  * Arguments:
  * 0: Source Unit (can be self) <OBJECT>
@@ -18,9 +18,10 @@
 
 params ["_sourceUnit", "_pointPosition"];
 
-if (!isServer) exitWith {};
+if (isNil QGVAR(sessionId)) exitWith {};
+if (!local _sourceUnit) exitWith {};
+if (_sourceUnit isNotEqualTo ACE_player) exitWith {};
 
-// Format data as hashes to match other statistics functions
 private _hashes = [
     [
         ["session_id", GVAR(sessionId)],

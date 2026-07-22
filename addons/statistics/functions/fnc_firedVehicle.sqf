@@ -1,9 +1,14 @@
 #include "script_component.hpp"
 
-//IGNORE_PRIVATE_WARNING ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle", "_gunner", "_turret"];
+// ace_firedPlayerVehicle params; gunner/turret are not in _this (see ace_common_fnc_firedEH)
+params ["_vehicle", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
 
-if (!isServer) exitWith {};
+if (isNil QGVAR(sessionId)) exitWith {};
 
+private _gunner = ACE_player;
+if (isNull _gunner) exitWith {};
+
+private _turret = _gunner unitTurret _vehicle;
 private _velocity = velocity _projectile;
 private _position = getPos _vehicle;
 private _hashes = [

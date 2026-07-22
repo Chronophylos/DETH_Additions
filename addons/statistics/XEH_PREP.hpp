@@ -1,3 +1,4 @@
+PREP(antistasiPlayer);
 PREP(antistasiServer);
 PREP(chat);
 PREP(connected);

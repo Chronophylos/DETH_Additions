@@ -1,8 +1,9 @@
 #include "script_component.hpp"
 
-//IGNORE_PRIVATE_WARNING ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle", "_gunner", "_turret"];
+params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
 
-if (!isServer) exitWith {};
+if (isNil QGVAR(sessionId)) exitWith {};
+if (!local _unit) exitWith {};
 
 private _velocity = velocity _projectile;
 private _position = getPos _unit;
