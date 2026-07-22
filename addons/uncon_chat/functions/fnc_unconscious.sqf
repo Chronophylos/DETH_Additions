@@ -50,7 +50,7 @@ if (_unconsciousState) then {
     _unit setVariable [QGVAR(oldChannel), getPlayerChannel _unit];
     [GVAR(radioChannel) + 5] remoteExec ["setCurrentChannel", _unit];
 
-    [GVAR(radioChannel), [true, false]] remoteExec ["enableChannel", _unit];
+    [GVAR(radioChannel) + 5, [true, false]] remoteExec ["enableChannel", _unit];
 
     _unit customChat [GVAR(radioChannel), "joined"];
 
