@@ -18,8 +18,7 @@ if (!isNil {_unit getVariable "moneyX"}) then { _fields pushBack ["money", _unit
 if (!isNil {_unit getVariable "isAFK"}) then { _fields pushBack ["is_afk", _unit getVariable ["isAFK", false]] };
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _unit],
         ["player_uid", getPlayerUID _unit]
     ],

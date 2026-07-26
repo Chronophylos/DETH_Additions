@@ -8,8 +8,7 @@ if (!local _unit) exitWith {};
 private _velocity = velocity _projectile;
 private _position = getPos _unit;
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _unit],
         ["player_uid", getPlayerUID _unit],
         ["weapon", _weapon],

@@ -6,8 +6,7 @@ if (!isServer) exitWith {};
     private _scores = getPlayerScores _x;
     if (count _scores > 0) then {
         private _hashes = [
-            [
-                ["session_id", GVAR(sessionId)],
+            COMMON_TAGS + [
                 ["player_name", name _x],
                 ["player_uid", getPlayerUID _x]
             ],

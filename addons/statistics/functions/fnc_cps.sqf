@@ -51,8 +51,7 @@ LOG("Starting CPS evaluation...");
         if ((_currentTime - _lastEventTime) >= 1) then {
             _lastEventTime = _currentTime;
             private _hashes = [
-                [
-                    ["session_id", GVAR(sessionId)],
+                COMMON_TAGS + [
                     ["profile_name", profileName]
                 ],
                 [

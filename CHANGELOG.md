@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Features
 
+* **statistics:** tag every measurement with the Antistasi campaign id and save name
 * **statistics:** add session_id tags ([dec833f](https://github.com/Chronophylos/DETH_Additions/commit/dec833f))
 * **statistics:** add statistic for ace pointing ([a1197fa](https://github.com/Chronophylos/DETH_Additions/commit/a1197fa))
 * **flags:** add vehicle killed event handler for flag and texture reset ([52d781c](https://github.com/Chronophylos/DETH_Additions/commit/52d781c))

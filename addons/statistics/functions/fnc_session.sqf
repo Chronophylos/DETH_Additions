@@ -3,9 +3,7 @@
 if (!isServer) exitWith {};
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)]
-    ],
+    COMMON_TAGS,
     [
         ["running", true]
     ]

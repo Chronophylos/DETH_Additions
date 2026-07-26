@@ -15,8 +15,7 @@ private _isSuicide = _killer isEqualTo _unit;
 private _isTeamKill = side _killer isEqualTo side _unit;
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _killer],
         ["player_uid", getPlayerUID _killer],
         ["target_name", name _unit],

@@ -1,12 +1,14 @@
 PREP(antistasiPlayer);
 PREP(antistasiServer);
 PREP(chat);
+PREP(commonTags);
 PREP(connected);
 PREP(cps);
 PREP(disconnected);
 PREP(fingered);
 PREP(fired);
 PREP(firedVehicle);
+PREP(initCampaign);
 PREP(killed);
 PREP(respawned);
 PREP(score);

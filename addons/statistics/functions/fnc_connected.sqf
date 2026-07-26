@@ -7,8 +7,7 @@ params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
 if (_name isEqualTo "__SERVER__") exitWith {};
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", _name],
         ["player_uid", _uid],
         ["jip", _jip]

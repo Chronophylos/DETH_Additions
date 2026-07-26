@@ -12,8 +12,7 @@ private _turret = _gunner unitTurret _vehicle;
 private _velocity = velocity _projectile;
 private _position = getPos _vehicle;
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _gunner],
         ["player_uid", getPlayerUID _gunner],
         ["vehicle", typeOf _vehicle],

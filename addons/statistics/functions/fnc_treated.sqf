@@ -11,8 +11,7 @@ if (_targetUID == "") then {
 };
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _caller],
         ["player_uid", getPlayerUID _caller],
         ["target_name", name _target],

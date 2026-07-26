@@ -19,8 +19,7 @@ if (isPlayer _person) then {
 };
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", _player_name],
         ["player_uid", _player_uid],
         ["name", _name],

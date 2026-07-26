@@ -23,8 +23,7 @@ if (!local _sourceUnit) exitWith {};
 if (_sourceUnit isNotEqualTo ACE_player) exitWith {};
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _sourceUnit],
         ["player_uid", getPlayerUID _sourceUnit]
     ],

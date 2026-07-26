@@ -6,8 +6,7 @@ if (!isServer) exitWith {};
 if (!isPlayer _unit) exitWith {};
 
 private _hashes = [
-    [
-        ["session_id", GVAR(sessionId)],
+    COMMON_TAGS + [
         ["player_name", name _unit],
         ["player_uid", getPlayerUID _unit]
     ],

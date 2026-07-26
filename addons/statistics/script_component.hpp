@@ -15,3 +15,6 @@
 #endif
 
 #include "\z\dta\addons\main\script_macros.hpp"
+
+// Tags every measurement carries. Prepend to an event's own tags with `COMMON_TAGS + [...]`.
+#define COMMON_TAGS (call FUNC(commonTags))

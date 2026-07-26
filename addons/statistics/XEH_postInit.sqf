@@ -21,6 +21,7 @@ if (_isAntistasiLoaded) then {
     [{!isNil "A3A_startupState" && {A3A_startupState isEqualTo "completed"}}, {
         LOG("Antistasi startup complete, adding per frame handlers");
         if (isServer) then {
+            call FUNC(initCampaign);
             [LINKFUNC(antistasiServer), 10, []] call CBA_fnc_addPerFrameHandler;
         };
         if (hasInterface) then {

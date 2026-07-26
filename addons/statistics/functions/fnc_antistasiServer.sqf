@@ -4,9 +4,7 @@
 
 if (!isServer) exitWith {};
 
-private _tags = [
-    ["session_id", GVAR(sessionId)]
-];
+private _tags = COMMON_TAGS;
 private _fields = [];
 
 // HR and Resources
