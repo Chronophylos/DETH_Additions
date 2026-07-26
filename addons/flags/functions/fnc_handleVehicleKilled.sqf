@@ -18,16 +18,19 @@
 
 params ["_vehicle", "_killer", "_instigator", "_useEffects"];
 
+// the killed event fires on every machine holding the vehicle, but the reset
+// commands have a global effect, so only the server may run them
+if (!isServer) exitWith {};
+
 if (isNull _vehicle) exitWith {
     TRACE_1("No valid vehicle found",_vehicle);
 };
 
 // Prefer engine/public state over machine-local tracking arrays (applier may have disconnected)
-if (getForcedFlagTexture _vehicle isNotEqualTo "") then {
+if ([_vehicle] call FUNC(hasFlag)) then {
     [_vehicle] call FUNC(resetFlag);
 };
 
-private _oldTexture = GETVAR(_vehicle,GVAR(oldTexture),nil);
-if (!isNil "_oldTexture") then {
+if ([_vehicle] call FUNC(hasTexture)) then {
     [_vehicle] call FUNC(resetTexture);
 };

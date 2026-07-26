@@ -6,10 +6,8 @@
     "\A3\Data_F\Flags\flag_NATO_CO.paa", // default value
     2, // isGlobal
     {
-        params ["_value"];
-        {
-            _x forceFlagTexture _value;
-        } forEach GVAR(flaggedVehicles);
+        // runs on every machine, but only the server touches the vehicles
+        call FUNC(refreshFlags);
     }
 ] call CBA_fnc_addSetting;
 
@@ -21,12 +19,8 @@
     [0, 0, 0, 0],
     2, // isGlobal
     {
-        params ["_value"];
-        private _texture = _value call BIS_fnc_colorRGBAtoTexture;
-        TRACE_2("Updating textures",_value,_texture);
-        {
-            _x setObjectTextureGlobal [0, _texture];
-        } forEach GVAR(coloredVehicles);
+        // runs on every machine, but only the server touches the vehicles
+        call FUNC(refreshTextures);
     }
 ] call CBA_fnc_addSetting;
 

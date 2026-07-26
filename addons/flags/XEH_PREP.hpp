@@ -4,4 +4,6 @@ PREP(hasFlag);
 PREP(hasTexture);
 PREP(resetFlag);
 PREP(resetTexture);
+PREP(refreshFlags);
+PREP(refreshTextures);
 PREP(handleVehicleKilled);
