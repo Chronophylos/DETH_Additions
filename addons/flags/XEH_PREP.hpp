@@ -1,5 +1,6 @@
 PREP(applyFlag);
 PREP(applyTexture);
+PREP(getFlagTexture);
 PREP(hasFlag);
 PREP(hasTexture);
 PREP(resetFlag);

@@ -18,10 +18,10 @@
 
 if (!isServer) exitWith {};
 
-private _texture = GVAR(flagTexture);
+private _texture = call FUNC(getFlagTexture);
 
 if (_texture isEqualTo "") exitWith {
-    WARNING("Flag texture setting is empty, keeping current flags");
+    WARNING("No flag texture available, keeping current flags");
 };
 
 private _flagged = vehicles select {[_x] call FUNC(hasFlag)};

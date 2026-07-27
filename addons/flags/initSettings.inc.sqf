@@ -1,4 +1,17 @@
 [
+    QGVAR(useFactionFlag), // setting
+    "CHECKBOX", // type
+    [LLSTRING(useFactionFlag_DisplayName), LLSTRING(useFactionFlag_Description)], // display name and tooltip
+    format ["DETH %1", LLSTRING(DisplayName)], // category
+    false, // default value
+    2, // isGlobal
+    {
+        // runs on every machine, but only the server touches the vehicles
+        call FUNC(refreshFlags);
+    }
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(flagTexture), // setting
     "EDITBOX", // type
     [LLSTRING(flagTexture_DisplayName), LLSTRING(flagTexture_Description)], // display name and tooltip

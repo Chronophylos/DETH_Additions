@@ -25,7 +25,13 @@ if (!isServer) exitWith {
     [QGVAR(applyFlag), [_target]] call CBA_fnc_serverEvent;
 };
 
-TRACE_2("Applying flag",_target,GVAR(flagTexture));
+private _texture = call FUNC(getFlagTexture);
+
+if (_texture isEqualTo "") exitWith {
+    WARNING("No flag texture to apply, leaving the vehicle alone");
+};
+
+TRACE_2("Applying flag",_target,_texture);
 
 // global effect, reaches every client from here
-_target forceFlagTexture GVAR(flagTexture);
+_target forceFlagTexture _texture;

@@ -17,6 +17,12 @@
             <Key ID="STR_DTA_Flags_flagTexture_DisplayName">
                 <English>Flag Texture</English>
             </Key>
+            <Key ID="STR_DTA_Flags_useFactionFlag_Description">
+                <English>Use the current Antistasi player faction's flag instead of the flag texture. Falls back to the flag texture when no faction flag is available.</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_useFactionFlag_DisplayName">
+                <English>Use Faction Flag</English>
+            </Key>
         </Container>
         <Container name="Textures">
             <Key ID="STR_DTA_Flags_ApplyTexture">

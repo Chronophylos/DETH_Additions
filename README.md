@@ -47,6 +47,7 @@
 -   **Flag & Vehicle Texture System**
     -   Add/Reset flags on vehicles via ACE Interaction
     -   Apply/Reset custom vehicle textures
+    -   Optionally track the current Antistasi player faction's flag
     -   Configurable through CBA Settings
     -   Support for all major vehicle types
 
