@@ -8,8 +8,8 @@ private _tags = COMMON_TAGS;
 private _fields = [];
 
 // HR and Resources
-private _hr = if (!isNil {server getVariable "hr"}) then { _fields pushBack ["hr", server getVariable "hr"]; server getVariable "hr" };
-private _money = if (!isNil {server getVariable "resourcesFIA"}) then { _fields pushBack ["money", server getVariable "resourcesFIA"]; server getVariable "resourcesFIA" };
+if (!isNil {server getVariable "hr"}) then { _fields pushBack ["hr", server getVariable "hr"] };
+if (!isNil {server getVariable "resourcesFIA"}) then { _fields pushBack ["money", server getVariable "resourcesFIA"] };
 
 // Commander and Rally Point
 if (!isNil "theBoss" && {!isNull theBoss}) then { _fields pushBack ["commander", name theBoss] };
