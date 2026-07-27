@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.5.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.4.0...v1.5.0) (2026-07-27)
 
 ### Features
 
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **statistics:** skip empty scores without aborting the rest of the roster
 * **statistics:** fired event never sending data ([c93d800](https://github.com/Chronophylos/DETH_Additions/commit/c93d800))
 * **spawner:** attack and spawn near the selected player (`BIS_fnc_spawnEnemy` arg order)
+* **flags:** make flag and texture updates server-authoritative — apply/reset requests are forwarded to the server and setting callbacks rebuild the vehicle list from replicated state, so resets stick across clients and vehicles keep working after their applier disconnects; flags are re-broadcast on JIP
 * **flags:** publicize texture reset; killed cleanup uses flag/texture state
 * **utils:** add missing stringtable entry ([3c532cc](https://github.com/Chronophylos/DETH_Additions/commit/3c532cc))
 * **flags:** fix applyTexture undefined var and vehicleColor setting callback
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Build
 
 * include CHANGELOG.md in mod release ([8ce3c45](https://github.com/Chronophylos/DETH_Additions/commit/8ce3c45))
+* add an `antistasi-metrics` launch config that loads Antistasi and IFXMetrics together
 * bump `actions/checkout` to v4
 
 ### Documentation
