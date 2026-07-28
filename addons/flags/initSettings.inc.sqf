@@ -1,4 +1,14 @@
 [
+    QGVAR(autoFlag), // setting
+    "CHECKBOX", // type
+    [LLSTRING(autoFlag_DisplayName), LLSTRING(autoFlag_Description)], // display name and tooltip
+    format ["DETH %1", LLSTRING(DisplayName)], // category
+    false, // default value
+    2 // isGlobal
+    // no change callback, this only affects vehicles spawned from now on
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(useFactionFlag), // setting
     "CHECKBOX", // type
     [LLSTRING(useFactionFlag_DisplayName), LLSTRING(useFactionFlag_Description)], // display name and tooltip

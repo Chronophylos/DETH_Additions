@@ -11,6 +11,12 @@
             <Key ID="STR_DTA_Flags_ResetFlag">
                 <English>Reset Flag</English>
             </Key>
+            <Key ID="STR_DTA_Flags_autoFlag_Description">
+                <English>Automatically apply the flag to rebel vehicles when they are spawned from the garage, bought, or created by Antistasi. Only affects vehicles spawned after this is enabled; use the ACE action on vehicles that already exist.</English>
+            </Key>
+            <Key ID="STR_DTA_Flags_autoFlag_DisplayName">
+                <English>Auto Flag Rebel Vehicles</English>
+            </Key>
             <Key ID="STR_DTA_Flags_flagTexture_Description">
                 <English>Texture for the flag</English>
             </Key>
