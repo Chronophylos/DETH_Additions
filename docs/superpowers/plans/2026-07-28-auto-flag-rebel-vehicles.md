@@ -8,6 +8,23 @@
 
 **Tech Stack:** Arma 3 SQF, CBA_A3 macros and settings framework, ACE3-style addon layout (the `#include "script_component.hpp"` / `PREP` / `GVAR` conventions already used throughout `addons/flags`).
 
+## Status — handoff
+
+**Task 1 is complete and committed** (`bdb72eb`, branch `feat/auto-flag-rebel-vehicles`).
+`hemtt check` and `hemtt build` both pass with nothing reported in `addons/flags`;
+the remaining warnings are pre-existing in `statistics`, `main`, and `utils`.
+
+**Task 2 is not started.** It needs Arma 3, which was not available on the machine
+that wrote the code. Pick this up on a machine with the game installed:
+
+```bash
+git fetch origin && git checkout feat/auto-flag-rebel-vehicles
+hemtt launch antistasi
+```
+
+Step 4 of Task 2 is the one that matters — everything else is confirmation. If it
+fails, Step 10 has the fix already written out.
+
 ## Global Constraints
 
 - Prefix is `DTA`, component is `flags`; `GVAR(x)` resolves to `DTA_flags_x` and `FUNC(x)` to `DTA_flags_fnc_x`. Never write these names out longhand — always use the macros.
@@ -51,7 +68,7 @@ Everything in this task is required for any of it to have an effect: without the
 - Consumes: `teamPlayer` — Antistasi's global holding the rebel side.
 - Produces: `GVAR(autoFlag)` (Boolean setting) and `FUNC(handleVehicleInit)` (takes `[_vehicle, _side]`, returns nothing).
 
-- [ ] **Step 1: Add the stringtable keys**
+- [x] **Step 1: Add the stringtable keys**
 
 In `addons/flags/stringtable.xml`, inside `<Container name="Flags">`. That container lists the ACE action strings first, then the setting strings alphabetically by setting name (`flagTexture_*`, then `useFactionFlag_*`), so insert these immediately **before** the `STR_DTA_Flags_flagTexture_Description` key:
 
@@ -64,7 +81,7 @@ In `addons/flags/stringtable.xml`, inside `<Container name="Flags">`. That conta
             </Key>
 ```
 
-- [ ] **Step 2: Add the CBA setting**
+- [x] **Step 2: Add the CBA setting**
 
 Append to `addons/flags/initSettings.inc.sqf`:
 
@@ -81,7 +98,7 @@ Append to `addons/flags/initSettings.inc.sqf`:
 
 There is deliberately no change callback. Toggling the setting affects vehicles spawned afterwards; existing vehicles are handled by the ACE action and `refreshFlags`.
 
-- [ ] **Step 3: Create the handler function**
+- [x] **Step 3: Create the handler function**
 
 Create `addons/flags/functions/fnc_handleVehicleInit.sqf`:
 
@@ -137,7 +154,7 @@ TRACE_2("Auto flagging vehicle",_vehicle,_side);
 [_vehicle] call FUNC(applyFlag);
 ```
 
-- [ ] **Step 4: Register the function for compilation**
+- [x] **Step 4: Register the function for compilation**
 
 Append to `addons/flags/XEH_PREP.hpp`:
 
@@ -145,7 +162,7 @@ Append to `addons/flags/XEH_PREP.hpp`:
 PREP(handleVehicleInit);
 ```
 
-- [ ] **Step 5: Subscribe to the Antistasi event**
+- [x] **Step 5: Subscribe to the Antistasi event**
 
 Append to `addons/flags/XEH_postInit.sqf`:
 
@@ -165,40 +182,35 @@ if (isNil "A3A_Events_fnc_addEventListener") exitWith {
 
 Because this uses `exitWith`, it must be the **last** block in the file. Verify nothing follows it after the edit.
 
-- [ ] **Step 6: Static check the SQF**
+- [x] **Step 6: Lint and build**
 
-There is no linter configured in this repo, so check by eye and by grep:
+HEMTT lints the SQF, validates the configs, and parses the stringtable, which
+covers what this step and Step 7 were originally going to do by hand:
 
 ```bash
 cd /home/chrono/Projects/DETH_Additions
-# every new/changed function includes its component header
-head -1 addons/flags/functions/fnc_handleVehicleInit.sqf
-# the PREP entry exists
+hemtt check
+hemtt build
+```
+
+Expected: both exit 0, and nothing in the output points at `addons/flags`.
+Pre-existing warnings in `addons/statistics`, `addons/main` and `addons/utils`
+(`L-S12`, `FNL`, `INVALID-PBOPREFIX`, `L-C14`) are unrelated to this change and
+should be left alone.
+
+- [x] **Step 7: Confirm the wiring**
+
+```bash
+cd /home/chrono/Projects/DETH_Additions
 grep -n handleVehicleInit addons/flags/XEH_PREP.hpp
-# the setting and listener are wired
 grep -n autoFlag addons/flags/initSettings.inc.sqf addons/flags/stringtable.xml
 grep -n AIVehInit addons/flags/XEH_postInit.sqf
-# balanced braces and parens in the new file
-python3 - <<'PY'
-s = open("addons/flags/functions/fnc_handleVehicleInit.sqf").read()
-for o, c in "{}", "()", "[]":
-    assert s.count(o) == s.count(c), (o, s.count(o), s.count(c))
-print("balanced")
-PY
+ls .hemttout/build/addons/dta_flags.pbo
 ```
 
-Expected: the header line is `#include "script_component.hpp"`, all four greps return matches, and the brace check prints `balanced`.
+Expected: every grep returns matches and the PBO exists.
 
-- [ ] **Step 7: Verify the stringtable is well-formed XML**
-
-```bash
-cd /home/chrono/Projects/DETH_Additions
-python3 -c "import xml.etree.ElementTree as E; E.parse('addons/flags/stringtable.xml'); print('ok')"
-```
-
-Expected: `ok`.
-
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 cd /home/chrono/Projects/DETH_Additions
@@ -216,7 +228,9 @@ default behind the new Auto Flag Rebel Vehicles setting."
 
 ### Task 2: In-game verification
 
-This task changes no files. It exists because the previous task cannot be validated by any tooling in this repository — the only real test is loading the mod in Arma 3 with Antistasi Ultimate. Do not mark Task 1 as done until this passes.
+This task changes no files. HEMTT confirms the code compiles and lints, but it cannot tell you whether Antistasi's event actually reaches the listener — the only real test is loading the mod in Arma 3 with Antistasi Ultimate.
+
+**Requires a machine with Arma 3 installed.** Task 1 was implemented on a machine without it.
 
 **Files:** none.
 
@@ -225,7 +239,14 @@ This task changes no files. It exists because the previous task cannot be valida
 
 - [ ] **Step 1: Build and load**
 
-Build the mod with `AntistasiBuilder.exe` / the project's existing build step, load an Antistasi Ultimate mission with CBA, ACE and this mod enabled, and confirm the addon initialized: check the RPT log has no `DTA_flags` errors and that **DETH Flags** appears in the CBA settings addon options.
+```bash
+git fetch origin && git checkout feat/auto-flag-rebel-vehicles
+hemtt launch antistasi
+```
+
+The `antistasi` preset in `.hemtt/launch.toml` already pulls CBA_A3 (450814997), ACE3 (463939057) and Antistasi Ultimate (3020755032) from the workshop and loads the dev build of this mod.
+
+Start an Antistasi Ultimate campaign and confirm the addon initialized: the RPT log has no `DTA_flags` errors and **DETH Flags** appears in the CBA addon options.
 
 - [ ] **Step 2: Confirm the setting exists and defaults to off**
 
