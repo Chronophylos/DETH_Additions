@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.6.0...v1.7.0) (2026-07-28)
+
+### Features
+
+* **flags:** add an "Auto Flag Rebel Vehicles" setting that applies the configured flag to rebel vehicles as Antistasi spawns them — from the garage, the black market, or AI garrisons — so no manual ACE action is needed. Off by default. Only affects vehicles spawned after it is enabled; use the ACE action on vehicles that already exist
+
+### Bug Fixes
+
+* **statistics:** drop unused nil assignments in `antistasiServer`
+* **utils:** rename the `utility` folder to `utils` so it matches its PBO prefix
+
 ## [1.6.0](https://github.com/Chronophylos/DETH_Additions/compare/v1.5.0...v1.6.0) (2026-07-27)
 
 ### Features
