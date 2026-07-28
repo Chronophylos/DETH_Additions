@@ -8,22 +8,31 @@
 
 **Tech Stack:** Arma 3 SQF, CBA_A3 macros and settings framework, ACE3-style addon layout (the `#include "script_component.hpp"` / `PREP` / `GVAR` conventions already used throughout `addons/flags`).
 
-## Status — handoff
+## Status
 
 **Task 1 is complete and committed** (`bdb72eb`, branch `feat/auto-flag-rebel-vehicles`).
 `hemtt check` and `hemtt build` both pass with nothing reported in `addons/flags`;
 the remaining warnings are pre-existing in `statistics`, `main`, and `utils`.
 
-**Task 2 is not started.** It needs Arma 3, which was not available on the machine
-that wrote the code. Pick this up on a machine with the game installed:
+**Task 2 ran in-game on 2026-07-28** against Antistasi Ultimate 3020755032 in a
+local session. Step 4 passes: a garage spawn reaches `handleVehicleInit` and
+`applyFlag` in the same frame, which also settles the Step 10 timing question in
+favour of direct registration.
 
-```bash
-git fetch origin && git checkout feat/auto-flag-rebel-vehicles
-hemtt launch antistasi
-```
+Steps 1–4, 6, 8, 9, 10 and 11 pass. Two steps are **unverified**:
 
-Step 4 of Task 2 is the one that matters — everything else is confirmation. If it
-fails, Step 10 has the fix already written out.
+- **Step 5 (multiplayer visibility)** — no second machine or headless client was
+  available. The client-to-server hop is exercised by `applyFlag`'s existing
+  `CBA_fnc_serverEvent` path, which the ACE action already used before this
+  change, so the risk is low but it has not been observed.
+- **Step 7 (AI-created rebel vehicle)** — impractical to trigger on demand. These
+  paths call `A3A_fnc_AIVEHinit` with `teamPlayer` exactly like the verified
+  garage path.
+
+Note for future debugging: `handleVehicleInit` exits at the `autoFlag` check
+before its first `TRACE`, so "setting is off" and "listener never registered"
+produce identical (empty) logs. Confirm the setting is on before investigating
+the event wiring.
 
 ## Global Constraints
 
@@ -237,7 +246,7 @@ This task changes no files. HEMTT confirms the code compiles and lints, but it c
 **Interfaces:**
 - Consumes: the built `DTA_flags` addon from Task 1, loaded alongside CBA_A3, ACE3 and Antistasi Ultimate.
 
-- [ ] **Step 1: Build and load**
+- [x] **Step 1: Build and load**
 
 ```bash
 git fetch origin && git checkout feat/auto-flag-rebel-vehicles
@@ -248,48 +257,92 @@ The `antistasi` preset in `.hemtt/launch.toml` already pulls CBA_A3 (450814997),
 
 Start an Antistasi Ultimate campaign and confirm the addon initialized: the RPT log has no `DTA_flags` errors and **DETH Flags** appears in the CBA addon options.
 
-- [ ] **Step 2: Confirm the setting exists and defaults to off**
+- [x] **Step 2: Confirm the setting exists and defaults to off**
 
 In CBA Addon Options → **DETH Flags**, confirm **Auto Flag Rebel Vehicles** is present, has the tooltip text from Step 1 of Task 1, and is unchecked.
 
-- [ ] **Step 3: Baseline — setting off**
+- [x] **Step 3: Baseline — setting off**
 
 With the setting off, spawn a vehicle from the garage.
 Expected: no flag on the vehicle. The ACE **Add Flag** action still works manually.
 
-- [ ] **Step 4: Setting on, garage spawn**
+Result: passed. A bought vehicle and a garage vehicle both spawned unflagged, and
+the manual ACE action still applied a flag (`fnc_applyFlag.sqf:34` in the RPT).
+
+- [x] **Step 4: Setting on, garage spawn**
 
 Enable **Auto Flag Rebel Vehicles**. Spawn a vehicle from the garage.
 Expected: the vehicle carries the texture from the **Flag Texture** setting, with no player interaction.
 
-- [ ] **Step 5: Multiplayer visibility**
+Result: passed, twice. RPT:
+
+```
+16:22:51 Auto flagging vehicle: C_Offroad_01_F, _side=GUER  fnc_handleVehicleInit.sqf:47
+16:22:51 Applying flag: C_Offroad_01_F, _texture=a3\data_f\flags\flag_fia_co.paa  fnc_applyFlag.sqf:34
+```
+
+- [ ] **Step 5: Multiplayer visibility** — UNVERIFIED, no second machine available
 
 With a second machine (or a headless client / dedicated server plus one client) connected, have a *client* place a vehicle from the garage.
 Expected: the flag is visible on both machines. This is the check that the local `AIVehInit` event correctly reached the server through `applyFlag`.
 
-- [ ] **Step 6: Faction flag interaction**
+Not run. Re-test this before relying on the feature in a multiplayer campaign.
+
+- [x] **Step 6: Faction flag interaction**
 
 Enable **Use Faction Flag** as well and spawn another vehicle.
 Expected: the new vehicle carries the rebel faction's flag rather than the configured texture path.
 
-- [ ] **Step 7: AI-created rebel vehicle**
+Result: passed, tested in both directions. With **Use Faction Flag** on, auto-flagged
+vehicles got `flag_fia_co.paa`; turning it off re-textured the two already
+auto-flagged vehicles via `refreshFlags` (`count _flagged=2`) and the next garage
+spawn used the configured `flag_ion_CO.paa`. Both branches of `getFlagTexture`
+are covered.
+
+- [ ] **Step 7: AI-created rebel vehicle** — UNVERIFIED, impractical to trigger on demand
 
 Trigger a rebel garrison or squad that spawns with a vehicle (for example recruit a squad with a vehicle, or find an AI rebel patrol vehicle).
 Expected: it carries the flag too.
 
-- [ ] **Step 8: Enemy vehicles unaffected**
+Not run. Low risk: these paths call `A3A_fnc_AIVEHinit` with `teamPlayer` exactly
+like the garage path that Step 4 verified, so they reach the same listener.
+
+- [x] **Step 8: Enemy vehicles unaffected**
 
 Observe or spawn an enemy (non-`teamPlayer`) vehicle.
 Expected: no flag.
 
-- [ ] **Step 9: Statics and crates unaffected**
+Result: passed, verified directly rather than by observation. Calling
+`[_offroad, east] call DTA_flags_fnc_handleVehicleInit` produced no
+`Auto flagging` and no `Applying flag`. An offroad is a `Car`, so it clears the
+class filter — only the side check could have rejected it.
+
+- [x] **Step 9: Statics and crates unaffected**
 
 Place a static weapon or an ammo crate through Antistasi.
 Expected: no errors in the RPT and no attempt to flag them. The class filter should have excluded them.
 
-- [ ] **Step 10: Record the registration-timing result**
+Result: passed, and worth recording *why*, because the two object types fail for
+different reasons:
+
+- **Crates never reach us at all.** `A3A_fnc_AIVEHinit` exits at
+  `if (fullCrew [_veh, "", true] isEqualTo []) exitWith` (fn_AIVEHinit.sqf:19)
+  before firing the event, so a crewless object never triggers `AIVehInit`. Our
+  class filter is not what stops them.
+- **Statics do reach us and are rejected by the class filter.**
+  `[_mortar, teamPlayer] call DTA_flags_fnc_handleVehicleInit` on a
+  `B_G_Mortar_01_F` logged `Not a flaggable vehicle`
+  (`fnc_handleVehicleInit.sqf:44`) and applied nothing.
+
+No script errors in the RPT throughout.
+
+- [x] **Step 10: Record the registration-timing result**
 
 The design flagged one unverified assumption: whether `A3A_Events_fnc_addEventListener` is defined by the time this addon's postInit runs. Step 4 passing proves it is.
+
+Result: direct registration works. The guard never tripped and no
+`Antistasi event system not available` trace appeared, so the
+`CBA_fnc_waitUntilAndExecute` fallback below was not needed and is left unused.
 
 If Step 4 fails **and** the RPT shows the `Antistasi event system not available` trace from Task 1 Step 5, the ordering assumption was wrong. Fix it by replacing the guard block in `addons/flags/XEH_postInit.sqf` with:
 
@@ -307,7 +360,7 @@ If Step 4 fails **and** the RPT shows the `Antistasi event system not available`
 
 Then re-run Steps 4 through 9 and commit with `fix(flags): wait for Antistasi event system before registering listener`.
 
-- [ ] **Step 11: Update the design doc**
+- [x] **Step 11: Update the design doc**
 
 Edit `docs/superpowers/specs/2026-07-28-auto-flag-rebel-vehicles-design.md` and replace the "Registration timing is unverified" bullet under **Accepted limitations** with what actually happened — either that the direct registration works, or that the `waitUntilAndExecute` fallback was needed.
 

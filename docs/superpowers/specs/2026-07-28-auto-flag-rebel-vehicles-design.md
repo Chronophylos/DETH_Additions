@@ -112,12 +112,16 @@ machine spawned the vehicle.
 - **Manual reset is not remembered.** Resetting a flag by hand on an
   auto-flagged vehicle sticks until that vehicle is initialized again (save
   reload, respawn). There is no per-vehicle opt-out state.
-- **Registration timing is unverified.** If A3A's function library is not
-  compiled by the time DETH's postInit runs, the guard silently skips
-  registration and the feature does nothing. This must be verified in-game
-  during implementation. If it turns out to be a real ordering problem, the fix
-  is to wrap the registration in `CBA_fnc_waitUntilAndExecute` on
-  `!isNil "A3A_Events_fnc_addEventListener"`.
+- **Registration timing is fine.** Verified in-game on 2026-07-28 with Antistasi
+  Ultimate 3020755032: `A3A_Events_fnc_addEventListener` is already defined when
+  DETH's postInit runs, so the direct registration takes effect and a garage
+  spawn reaches `handleVehicleInit`. The `CBA_fnc_waitUntilAndExecute` fallback
+  was not needed.
+- **A disabled `autoFlag` is indistinguishable from a broken listener in the
+  logs.** `handleVehicleInit` returns at the `autoFlag` check before its first
+  `TRACE`, so a forgotten setting looks exactly like a failed registration. The
+  `TRACE_2` on the flagging path is the only positive signal; there is none for
+  the disabled case.
 
 ## Out of scope
 
