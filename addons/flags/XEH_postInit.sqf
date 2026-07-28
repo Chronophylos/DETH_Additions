@@ -17,3 +17,13 @@ if (isServer) then {
 if (hasInterface && {didJIP}) then {
     [QGVAR(refreshFlags), []] call CBA_fnc_serverEvent;
 };
+
+// Antistasi fires AIVehInit at the end of A3A_fnc_AIVEHinit for every vehicle it
+// creates. The event is declared isLocal, so every machine registers and each one
+// handles the vehicles it spawned itself. Guarded so the addon stays inert
+// outside Antistasi Ultimate.
+if (isNil "A3A_Events_fnc_addEventListener") exitWith {
+    TRACE_1("Antistasi event system not available, skipping auto flag listener",QUOTE(ADDON));
+};
+
+["AIVehInit", QUOTE(ADDON), LINKFUNC(handleVehicleInit)] call A3A_Events_fnc_addEventListener;
